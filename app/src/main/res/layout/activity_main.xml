@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".activity.MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="회차: " />
+
+                <TextView
+                    android:id="@+id/drwNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="추첨일: " />
+
+                <TextView
+                    android:id="@+id/drwDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2015-01-01" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:layout_marginTop="30dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <com.bbaek.lottogo.widget.NumberBall
+                android:id="@+id/ballNo1"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="5dp" />
+
+            <com.bbaek.lottogo.widget.NumberBall
+                android:id="@+id/ballNo2"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="5dp" />
+
+            <com.bbaek.lottogo.widget.NumberBall
+                android:id="@+id/ballNo3"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="5dp" />
+
+            <com.bbaek.lottogo.widget.NumberBall
+                android:id="@+id/ballNo4"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="5dp" />
+
+            <com.bbaek.lottogo.widget.NumberBall
+                android:id="@+id/ballNo5"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="5dp" />
+
+            <com.bbaek.lottogo.widget.NumberBall
+                android:id="@+id/ballNo6"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="5dp" />
+
+            <TextView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:text="+" />
+
+            <com.bbaek.lottogo.widget.NumberBall
+                android:id="@+id/ballBunsNo"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="5dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/excludeBonusNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="보너스 번호 제외" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TableHeader"
+                    android:text="총합" />
+
+                <TextView
+                    android:id="@+id/totalSum"
+                    style="@style/TableBody" />
+
+                <TextView
+                    style="@style/TableHeader"
+                    android:text="연번" />
+
+                <TextView
+                    android:id="@+id/totalSeq"
+                    style="@style/TableBody" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TableHeader"
+                    android:text="저고율" />
+
+                <TextView
+                    android:id="@+id/lowHigh"
+                    style="@style/TableBody" />
+
+                <TextView
+                    style="@style/TableHeader"
+                    android:text="홀짝율" />
+
+                <TextView
+                    android:id="@+id/oddEven"
+                    style="@style/TableBody" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TableHeader"
+                    android:text="좌합" />
+
+                <TextView
+                    android:id="@+id/totalLeft"
+                    style="@style/TableBody" />
+
+                <TextView
+                    style="@style/TableHeader"
+                    android:text="우합" />
+
+                <TextView
+                    android:id="@+id/totalRight"
+                    style="@style/TableBody" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TableHeader"
+                    android:text="123합" />
+
+                <TextView
+                    android:id="@+id/total123"
+                    style="@style/TableBody" />
+
+                <TextView
+                    style="@style/TableHeader"
+                    android:text="456합" />
+
+                <TextView
+                    android:id="@+id/total456"
+                    style="@style/TableBody" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>

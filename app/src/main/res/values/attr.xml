@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="NumberBall">
+        <attr name="ballSize" format="enum">
+            <enum name="normal" value="0"/>
+            <enum name="small" value="1"/>
+            <enum name="large" value="2"/>
+        </attr>
+    </declare-styleable>
+</resources>

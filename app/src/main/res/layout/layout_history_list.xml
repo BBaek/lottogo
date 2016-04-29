@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.bbaek.lottogo.widget.NumberBall
+            android:id="@+id/drwtNo1HisList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:ballSize="small"
+            android:layout_marginRight="5dp"/>
+
+        <com.bbaek.lottogo.widget.NumberBall
+            android:id="@+id/drwtNo2HisList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:ballSize="small"
+            android:layout_marginRight="5dp"/>
+
+        <com.bbaek.lottogo.widget.NumberBall
+            android:id="@+id/drwtNo3HisList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:ballSize="small"
+            android:layout_marginRight="5dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.bbaek.lottogo.widget.NumberBall
+            android:id="@+id/drwtNo4HisList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:ballSize="small"
+            android:layout_marginRight="5dp"/>
+
+        <com.bbaek.lottogo.widget.NumberBall
+            android:id="@+id/drwtNo5HisList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:ballSize="small"
+            android:layout_marginRight="5dp"/>
+
+        <com.bbaek.lottogo.widget.NumberBall
+            android:id="@+id/drwtNo6HisList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:ballSize="small"
+            android:layout_marginRight="5dp"/>
+    </LinearLayout>
+</LinearLayout>

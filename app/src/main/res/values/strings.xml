@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">LottoGo</string>
+    <string name="title_activity_rank_list"></string>
+    <string name="title_activity_setting">Setting</string>
+    <string name="title_activity_exclude_no">제외 번호 선택</string>
+    <string name="title_activity_include_no">포함 번호 선택</string>
+    <string name="title_activity_new_history">NewHistoryActivity</string>
+    <string name="title_activity_result_history">ResultHistoryActivity</string>
+</resources>
