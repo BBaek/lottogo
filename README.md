@@ -1,0 +1,2 @@
+# lottogo
+lottogo
