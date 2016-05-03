@@ -3,20 +3,27 @@ package com.bbaek.lottogo.activity.main;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bbaek.lottogo.LottoQRParser;
+import com.bbaek.lottogo.ScanResultDialog;
 import com.bbaek.lottogo.adapter.HistoryListAdapter;
 import com.bbaek.lottogo.R;
 import com.bbaek.lottogo.utils.BBLogger;
 import com.bbaek.lottogo.utils.ViewUtils;
 import com.bbaek.lottogo.widget.NumberBallMetrix;
+import com.google.zxing.integration.android.IntentResult;
 
 import java.util.Iterator;
 import java.util.Map;
@@ -33,11 +40,15 @@ public class MainNewActivity extends Activity implements MainPresenter.View {
     NumberBallMetrix ballNumberMetrix;
     RelativeLayout mainGo;
     ImageView btnSetting;
+    ImageView btnScan;
     // history listview
     ListView historyListView;
     // rank view
     LinearLayout analRankContainer;
     TextView[] analRanks;
+
+    ScanResultDialog rankDialog;
+    WebView adWebView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +92,26 @@ public class MainNewActivity extends Activity implements MainPresenter.View {
             }
         });
 
+        btnScan = (ImageView) findViewById(R.id.btnScan);
+        btnScan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ViewUtils.antiOverlapClick(v, 1000);
+                mainPresenter.scanQRcode();
+//                "http://qr.nlotto.co.kr/?v=0700m082532353845q121722354144q091724253342q070809192241q1013182324391673179286"
+//                rankDialog = new ScanResultDialog(context, "http://qr.nlotto.co.kr/?v=0700m112328293044q112328293013q112328293045q112328293334q1123283132331673179286", new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        ViewUtils.antiOverlapClick(v, 1000);
+//                        if (rankDialog.isShowing()) {
+//                            rankDialog.dismiss();
+//                        }
+//                    }
+//                });
+//                rankDialog.show();
+            }
+        });
+
         historyListView = (ListView) findViewById(R.id.historyList);
         historyListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -108,6 +139,9 @@ public class MainNewActivity extends Activity implements MainPresenter.View {
                 mainPresenter.openActivityRankResult();
             }
         });
+
+        adWebView = (WebView) findViewById(R.id.adWebView);
+        adWebView.getSettings().setJavaScriptEnabled(true); // enabled javaScript in WebView
     }
 
     @Override
@@ -153,5 +187,28 @@ public class MainNewActivity extends Activity implements MainPresenter.View {
         if(historyListView.getAdapter() == null) {
             historyListView.setAdapter(adapter);
         }
+    }
+
+    @Override
+    public void getScanQRcodeResult(IntentResult scanningResult) {
+        logger.debug("formatName: " + scanningResult.getFormatName());
+        logger.debug("contents: " + scanningResult.getContents());
+        if (scanningResult.getContents() != null) {
+            rankDialog = new ScanResultDialog(context, scanningResult.getContents(), new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ViewUtils.antiOverlapClick(v, 1000);
+                    if (rankDialog.isShowing()) {
+                        rankDialog.dismiss();
+                    }
+                }
+            });
+            rankDialog.show();
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        mainPresenter.scanQRcodeResult(requestCode, resultCode, intent);
     }
 }

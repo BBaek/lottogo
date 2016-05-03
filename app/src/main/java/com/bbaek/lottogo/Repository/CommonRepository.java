@@ -129,6 +129,15 @@ public class CommonRepository {
         }
     }
 
+    public void selectLotto(int key, TransactionCallback.OnSelectCallback callback) {
+        Realm realm = Realm.getDefaultInstance();
+        RealmObject results = realm.where(Lotto.class).equalTo("drwNo", key).findFirst();
+
+        if (callback != null) {
+            callback.onSuccess(results);
+        }
+    }
+
     public RealmResults select(Class<? extends RealmObject> clazz) {
         Realm realm = Realm.getDefaultInstance();
         RealmResults results = realm.where(clazz).findAll();
@@ -147,5 +156,14 @@ public class CommonRepository {
 
         if (callback != null)
             callback.onSuccess();
+    }
+
+    static public int getNextKey(Class<? extends RealmObject> clazz) {
+        Realm realm = Realm.getDefaultInstance();
+        try {
+            return realm.where(clazz).max("id").intValue() + 1;
+        } catch (Exception e) {
+            return 1;
+        }
     }
 }

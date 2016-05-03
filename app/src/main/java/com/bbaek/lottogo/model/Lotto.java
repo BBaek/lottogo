@@ -68,7 +68,7 @@ public class Lotto extends RealmObject {
 
     private RealmList<LottoDrwtNo> drwtNos;
 
-    @Ignore
+//    @Ignore
     private int rank;
 
     @Ignore

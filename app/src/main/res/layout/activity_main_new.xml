@@ -3,12 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context=".activity.main.MainNewActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <LinearLayout
@@ -78,13 +77,12 @@
                 android:layout_height="300dp"
                 android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/btnSetting"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:layout_gravity="right"
-                    android:padding="5dp"
-                    android:src="@drawable/ic_settings"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:text="생성이력"/>
 
                 <ListView
                     android:id="@+id/historyList"
@@ -96,16 +94,48 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/bg_result_boarder"
-            android:padding="2dp"
-            android:layout_margin="2dp"
+            android:layout_height="250dp"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
             android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:text="결과 분석"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="right"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/btnScan"
+                        android:layout_width="40dp"
+                        android:layout_height="match_parent"
+                        android:src="@android:drawable/ic_menu_camera"/>
+
+                    <ImageView
+                        android:id="@+id/btnSetting"
+                        android:layout_width="40dp"
+                        android:layout_height="match_parent"
+                        android:padding="7dp"
+                        android:src="@drawable/ic_settings"/>
+                </LinearLayout>
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/analRankContainer"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="30dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -147,10 +177,16 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="30dp"
                 android:orientation="horizontal">
 
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
+    <WebView
+        android:id="@+id/adWebView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorGoBackground"></WebView>
 </RelativeLayout>

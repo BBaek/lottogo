@@ -10,5 +10,6 @@
 
     <color name="colorGoBackground">#DEA344</color>
     <color name="colorGoLine">#65310D</color>
+    <color name="colorBallText">#414141</color>
 
 </resources>

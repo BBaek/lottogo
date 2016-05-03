@@ -1,11 +1,15 @@
 package com.bbaek.lottogo.activity.main;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.widget.Toast;
 
 import com.bbaek.lottogo.activity.ActivityModel;
 import com.bbaek.lottogo.activity.MyApplication;
 import com.bbaek.lottogo.activity.rank.RankListActivity;
 import com.bbaek.lottogo.activity.setting.SettingActivity;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 import java.util.Map;
 
@@ -85,5 +89,22 @@ public class MainpresenterImpl implements MainPresenter {
     @Override
     public void openActivitySetting() {
         ActivityModel.changeStartActivity(activity, SettingActivity.class, false, null);
+    }
+
+    @Override
+    public void scanQRcode() {
+        IntentIntegrator scanInterIntegrator = new IntentIntegrator(activity);
+        scanInterIntegrator.initiateScan();
+    }
+
+    @Override
+    public void scanQRcodeResult(int requestCode, int resultCode, Intent intent) {
+        IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
+        if (view != null && scanningResult != null) {
+            view.getScanQRcodeResult(scanningResult);
+        } else {
+            Toast.makeText(activity, "No scan data received!", Toast.LENGTH_SHORT).show();
+        }
+
     }
 }

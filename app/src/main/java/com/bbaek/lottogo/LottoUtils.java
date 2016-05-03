@@ -5,6 +5,7 @@ import android.content.Context;
 import com.bbaek.lottogo.Repository.CommonRepository;
 import com.bbaek.lottogo.Repository.TransactionCallback;
 import com.bbaek.lottogo.model.Lotto;
+import com.bbaek.lottogo.model.my.DrwtNos;
 import com.bbaek.lottogo.utils.PreferenceUtils;
 
 import java.util.ArrayList;
@@ -26,6 +27,37 @@ public class LottoUtils {
     RealmResults<Lotto> rank3Result;
     RealmResults<Lotto> rank4Result;
     RealmResults<Lotto> rank5Result;
+
+    public static int compareRank(Lotto ori, DrwtNos scan) {
+        int matchCnt = 0;
+        if(ori.getDrwtNo1() == scan.getDrwtNo1()) matchCnt++;
+        if(ori.getDrwtNo2() == scan.getDrwtNo2()) matchCnt++;
+        if(ori.getDrwtNo3() == scan.getDrwtNo3()) matchCnt++;
+        if(ori.getDrwtNo4() == scan.getDrwtNo4()) matchCnt++;
+        if(ori.getDrwtNo5() == scan.getDrwtNo5()) matchCnt++;
+        if(ori.getDrwtNo6() == scan.getDrwtNo6()) matchCnt++;
+
+        if (matchCnt == 6) {
+            return 1;
+        } else if (matchCnt == 5) {
+            if (ori.getBnusNo() == scan.getDrwtNo1()
+                    || ori.getBnusNo() == scan.getDrwtNo2()
+                    || ori.getBnusNo() == scan.getDrwtNo3()
+                    || ori.getBnusNo() == scan.getDrwtNo4()
+                    || ori.getBnusNo() == scan.getDrwtNo5()
+                    || ori.getBnusNo() == scan.getDrwtNo6()) {
+                return 2;
+            } else {
+                return 3;
+            }
+        } else if (matchCnt == 4) {
+            return 4;
+        } else if (matchCnt == 3) {
+            return 5;
+        } else {
+            return 0;
+        }
+    }
 
     public LottoUtils(Context context) {
         this.context = context;
