@@ -5,11 +5,16 @@ import android.content.Context;
 import com.bbaek.lottogo.LottoUtils;
 import com.bbaek.lottogo.Repository.CommonRepository;
 import com.bbaek.lottogo.Repository.InExcludeRepository;
+import com.bbaek.lottogo.Repository.LottoRepository;
 import com.bbaek.lottogo.activity.MyApplication;
 import com.bbaek.lottogo.adapter.HistoryListAdapter;
 import com.bbaek.lottogo.model.my.InExcludeNo;
 import com.bbaek.lottogo.utils.BBLogger;
 import com.bbaek.lottogo.widget.NumberBallMetrix;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
+import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -98,4 +103,30 @@ public class MainModel {
     public void updateRankResults() {
         MyApplication.lottoList = lottoUtils.getRankResults();
     }
+
+    public ArrayList<IBarDataSet> getHBarDataSet(List<Integer> balls) {
+        LottoRepository repository = new LottoRepository();
+        ArrayList<IBarDataSet> dataSets = null;
+        ArrayList<BarEntry> entries = new ArrayList<>();
+        for (int i = 0; i < balls.size(); i++) {
+            entries.add(new BarEntry(repository.selectAvgPickedNumber(balls.get(i)).size(), i));
+        }
+
+        BarDataSet barDataSet1 = new BarDataSet(entries, "");
+        barDataSet1.setDrawValues(false);
+        barDataSet1.setColors(ColorTemplate.COLORFUL_COLORS);
+
+        dataSets = new ArrayList<>();
+        dataSets.add(barDataSet1);
+        return dataSets;
+    }
+
+    public ArrayList<String> getHBallLabel(List<Integer> label) {
+        ArrayList<String> xAxis = new ArrayList<>();
+        for (int no : label) {
+            xAxis.add("" + no);
+        }
+        return xAxis;
+    }
+
 }

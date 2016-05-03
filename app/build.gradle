@@ -27,6 +27,10 @@ android {
     }
 }
 
+repositories {
+    maven { url "https://jitpack.io" }
+}
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile files('libs/bb_common.jar')
@@ -41,4 +45,6 @@ dependencies {
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.journeyapps:zxing-android-embedded:3.0.0@aar' // 추가
     compile 'com.google.zxing:core:3.2.0' // 추가
+    compile 'com.github.PhilJay:MPAndroidChart:v2.2.4'
+    compile 'com.google.android.gms:play-services-appindexing:8.1.0'
 }

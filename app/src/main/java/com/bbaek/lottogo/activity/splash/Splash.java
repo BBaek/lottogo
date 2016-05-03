@@ -2,11 +2,14 @@ package com.bbaek.lottogo.activity.splash;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.bbaek.common.client.lottogo.manager.LottoManager;
 import com.bbaek.common.client.lottogo.model.LottoInfo;
@@ -16,6 +19,7 @@ import com.bbaek.lottogo.Repository.TransactionCallback;
 import com.bbaek.lottogo.activity.main.MainNewActivity;
 import com.bbaek.lottogo.model.Lotto;
 import com.bbaek.lottogo.utils.BBLogger;
+import com.bbaek.lottogo.utils.PreferenceUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -35,7 +39,7 @@ public class Splash extends FragmentActivity {
 
         this.mContext = this;
         commonRepository = new CommonRepository();
-
+        getAppCurVersionCode();
         initLottoData();
     }
 
@@ -52,6 +56,25 @@ public class Splash extends FragmentActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void getAppCurVersionCode() {
+        try {
+            PackageInfo pi = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_META_DATA);
+            PreferenceUtils.instance(mContext).putAppVersion(pi.versionName);
+            TextView versionText = (TextView) findViewById(R.id.splashVer);
+            versionText.setText(pi.versionName);
+            logger.debug("CurrentVersion: " + pi.versionName + " [" + pi.versionCode + "]");
+        } catch (PackageManager.NameNotFoundException e) {
+            logger.error("Failed get package info", e);
+            killApp();
+        }
+    }
+
+    private void killApp() {
+        moveTaskToBack(true);
+        finish();
+        android.os.Process.killProcess(android.os.Process.myPid());
     }
 
     private void initLottoData() {

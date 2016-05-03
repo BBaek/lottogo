@@ -5,6 +5,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.bbaek.lottogo.adapter.HistoryListAdapter;
+import com.github.mikephil.charting.data.BarData;
 import com.google.zxing.integration.android.IntentResult;
 
 import java.util.Map;
@@ -25,6 +26,7 @@ public interface MainPresenter {
     void openActivitySetting();
     void scanQRcode();
     void scanQRcodeResult(int requestCode, int resultCode, Intent intent);
+    void calAvgPickedNumber(Map<Integer, Integer> balls);
 
     public interface View {
         void setVisibleUsingInfo(boolean visible);
@@ -32,5 +34,6 @@ public interface MainPresenter {
         void setRankText(String[] text);
         void setHistoryAdapter(HistoryListAdapter adapter);
         void getScanQRcodeResult(IntentResult scanningResult);
+        void setAvgPickedNumber(BarData data);
     }
 }

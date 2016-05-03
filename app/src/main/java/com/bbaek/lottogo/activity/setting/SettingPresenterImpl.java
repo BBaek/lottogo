@@ -4,6 +4,8 @@ import android.app.Activity;
 
 import com.bbaek.lottogo.activity.ActivityModel;
 import com.bbaek.lottogo.activity.setting.exclude.ExcludeNoActivity;
+import com.bbaek.lottogo.activity.setting.history.NewHistoryActivity;
+import com.bbaek.lottogo.activity.setting.history.ResultHistoryActivity;
 import com.bbaek.lottogo.activity.setting.include.IncludeNoActivity;
 
 /**

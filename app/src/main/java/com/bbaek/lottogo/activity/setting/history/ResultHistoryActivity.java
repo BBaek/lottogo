@@ -1,4 +1,4 @@
-package com.bbaek.lottogo.activity.setting;
+package com.bbaek.lottogo.activity.setting.history;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -12,14 +12,14 @@ import com.bbaek.lottogo.R;
 import com.bbaek.lottogo.utils.BBLogger;
 import com.bbaek.lottogo.utils.ViewUtils;
 
-public class NewHistoryActivity extends AppCompatActivity {
+public class ResultHistoryActivity extends AppCompatActivity {
     private BBLogger logger = new BBLogger(getClass().getSimpleName());
     Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_history);
+        setContentView(R.layout.activity_result_history);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -33,6 +33,6 @@ public class NewHistoryActivity extends AppCompatActivity {
         });
 
         context = this;
-    }
 
+    }
 }

@@ -64,9 +64,9 @@ public class ScanResultDialog extends Dialog {
         lpWindow.flags = WindowManager.LayoutParams.FLAG_DIM_BEHIND;
         lpWindow.dimAmount = 0.8f;
         getWindow().setAttributes(lpWindow);
-        getWindow().setGravity(Gravity.CENTER);
+        // 안먹힘
+//        getWindow().setGravity(Gravity.CENTER);
         setContentView(R.layout.layout_scan_result_dialog);
-        setCancelable(true);
         setLayout();
         this.datas = new LottoQRParser(scanValue).getResultHistoryNo();
         if (this.datas != null) {

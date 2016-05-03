@@ -4,7 +4,10 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -23,8 +26,19 @@ import com.bbaek.lottogo.R;
 import com.bbaek.lottogo.utils.BBLogger;
 import com.bbaek.lottogo.utils.ViewUtils;
 import com.bbaek.lottogo.widget.NumberBallMetrix;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.HorizontalBarChart;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
+import com.github.mikephil.charting.utils.ColorTemplate;
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.zxing.integration.android.IntentResult;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -49,6 +63,13 @@ public class MainNewActivity extends Activity implements MainPresenter.View {
 
     ScanResultDialog rankDialog;
     WebView adWebView;
+
+    HorizontalBarChart chart;
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +98,7 @@ public class MainNewActivity extends Activity implements MainPresenter.View {
             @Override
             public void onClick(View v) {
                 ViewUtils.antiOverlapClick(v, 1000);
-                if(!progressDialog.isShowing()) progressDialog.show();
+                if (!progressDialog.isShowing()) progressDialog.show();
                 mainPresenter.showUsingInfo(false);
                 mainPresenter.drawBalls();
             }
@@ -98,7 +119,6 @@ public class MainNewActivity extends Activity implements MainPresenter.View {
             public void onClick(View v) {
                 ViewUtils.antiOverlapClick(v, 1000);
                 mainPresenter.scanQRcode();
-//                "http://qr.nlotto.co.kr/?v=0700m082532353845q121722354144q091724253342q070809192241q1013182324391673179286"
 //                rankDialog = new ScanResultDialog(context, "http://qr.nlotto.co.kr/?v=0700m112328293044q112328293013q112328293045q112328293334q1123283132331673179286", new View.OnClickListener() {
 //                    @Override
 //                    public void onClick(View v) {
@@ -139,6 +159,8 @@ public class MainNewActivity extends Activity implements MainPresenter.View {
                 mainPresenter.openActivityRankResult();
             }
         });
+
+        chart = (HorizontalBarChart) findViewById(R.id.chart);
 
         adWebView = (WebView) findViewById(R.id.adWebView);
         adWebView.getSettings().setJavaScriptEnabled(true); // enabled javaScript in WebView
@@ -184,7 +206,7 @@ public class MainNewActivity extends Activity implements MainPresenter.View {
 
     @Override
     public void setHistoryAdapter(HistoryListAdapter adapter) {
-        if(historyListView.getAdapter() == null) {
+        if (historyListView.getAdapter() == null) {
             historyListView.setAdapter(adapter);
         }
     }
@@ -205,6 +227,14 @@ public class MainNewActivity extends Activity implements MainPresenter.View {
             });
             rankDialog.show();
         }
+    }
+
+    @Override
+    public void setAvgPickedNumber(BarData data) {
+        chart.setData(data);
+        chart.setDescription("");
+        chart.animateY(1000);
+        chart.invalidate();
     }
 
     @Override

@@ -11,6 +11,7 @@ public class PreferenceUtils extends BasePreferenceUtils
 {
     private static PreferenceUtils _instance = null;
 
+    private static final String PROPERTY_APP_VERSION = "appVersion";
     private static final String DRWT_NO_1 = "drwt_no_1";
     private static final String DRWT_NO_2 = "drwt_no_2";
     private static final String DRWT_NO_3 = "drwt_no_3";
@@ -29,6 +30,16 @@ public class PreferenceUtils extends BasePreferenceUtils
     protected PreferenceUtils(Context context)
     {
         super(context);
+    }
+
+    public void putAppVersion(String appVersion)
+    {
+        put(PROPERTY_APP_VERSION, appVersion);
+    }
+
+    public String getAppVersion()
+    {
+        return get(PROPERTY_APP_VERSION);
     }
 
     public void putDrwtNoBouns(int value)

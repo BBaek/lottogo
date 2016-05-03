@@ -4,13 +4,18 @@ import android.app.Activity;
 import android.content.Intent;
 import android.widget.Toast;
 
+import com.bbaek.lottogo.LottoUtils;
 import com.bbaek.lottogo.activity.ActivityModel;
 import com.bbaek.lottogo.activity.MyApplication;
 import com.bbaek.lottogo.activity.rank.RankListActivity;
 import com.bbaek.lottogo.activity.setting.SettingActivity;
+import com.bbaek.lottogo.model.Lotto;
+import com.github.mikephil.charting.data.BarData;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -50,13 +55,13 @@ public class MainpresenterImpl implements MainPresenter {
 
     @Override
     public void drawBalls(Map<Integer, Integer> balls) {
-        if (balls == null) {
-            Map<Integer, Integer> _balls = mainModel.getRandBalls();
-            view.setBallNumberMetrix(_balls);
+        Map<Integer, Integer> _balls = balls;
+        if (_balls == null) {
+            _balls = mainModel.getRandBalls();
             saveHistory(_balls);
-        } else {
-            view.setBallNumberMetrix(balls);
         }
+        view.setBallNumberMetrix(_balls);
+        calAvgPickedNumber(_balls);
     }
 
     @Override
@@ -106,5 +111,11 @@ public class MainpresenterImpl implements MainPresenter {
             Toast.makeText(activity, "No scan data received!", Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    @Override
+    public void calAvgPickedNumber(Map<Integer, Integer> balls) {
+        List<Integer> ballList = LottoUtils.sortByValue(balls);
+        view.setAvgPickedNumber(new BarData(mainModel.getHBallLabel(ballList), mainModel.getHBarDataSet(ballList)));
     }
 }
