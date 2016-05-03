@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.widget.Toast;
 
+import com.bbaek.lottogo.LottoAvg;
 import com.bbaek.lottogo.LottoUtils;
 import com.bbaek.lottogo.activity.ActivityModel;
 import com.bbaek.lottogo.activity.MyApplication;
@@ -61,7 +62,7 @@ public class MainpresenterImpl implements MainPresenter {
             saveHistory(_balls);
         }
         view.setBallNumberMetrix(_balls);
-        calAvgPickedNumber(_balls);
+        updateAvgAllDatas(_balls);
     }
 
     @Override
@@ -110,12 +111,56 @@ public class MainpresenterImpl implements MainPresenter {
         } else {
             Toast.makeText(activity, "No scan data received!", Toast.LENGTH_SHORT).show();
         }
-
     }
 
     @Override
-    public void calAvgPickedNumber(Map<Integer, Integer> balls) {
+    public void updateAvgAllDatas(Map<Integer, Integer> balls) {
+        calAvgPickedNumber(balls);
+        LottoAvg lottoAvg = new LottoAvg(balls);
+        calAvgTotalSum(lottoAvg);
+        calAvgTotalSeq(lottoAvg);
+        calAvgTotalLowHighCnt(lottoAvg);
+        calAvgTotalOddEvenCnt(lottoAvg);
+        calAvgTotalLeft(lottoAvg);
+        calAvgTotalRight(lottoAvg);
+        calAvgTotal123(lottoAvg);
+        calAvgTotal456(lottoAvg);
+    }
+
+    protected void calAvgPickedNumber(Map<Integer, Integer> balls) {
         List<Integer> ballList = LottoUtils.sortByValue(balls);
         view.setAvgPickedNumber(new BarData(mainModel.getHBallLabel(ballList), mainModel.getHBarDataSet(ballList)));
+    }
+
+    protected void calAvgTotalSum(LottoAvg lottoAvg) {
+        view.setAvgTotalSum("" + lottoAvg.getTotalSum());
+    }
+
+    protected void calAvgTotalSeq(LottoAvg lottoAvg) {
+        view.setAvgTotalSeq("" + lottoAvg.getTotalSequentialDigit());
+    }
+
+    protected void calAvgTotalLowHighCnt(LottoAvg lottoAvg) {
+        view.setAvgTotalLowHighCnt("저[" + lottoAvg.getTotalCountLowDigit() + "]/고[" + lottoAvg.getTotalCountHighDigit() + "]");
+    }
+
+    protected void calAvgTotalOddEvenCnt(LottoAvg lottoAvg) {
+        view.setAvgTotalOddEvenCnt("홀[" + lottoAvg.getTotalCountOddDigit() + "]/짝[" + lottoAvg.getTotalCountEvenDigit() + "]");
+    }
+
+    protected void calAvgTotalLeft(LottoAvg lottoAvg) {
+        view.setAvgTotalLeft("" + lottoAvg.getTotalLeftDigit());
+    }
+
+    protected void calAvgTotalRight(LottoAvg lottoAvg) {
+        view.setAvgTotalRight("" + lottoAvg.getTotalRightDigit());
+    }
+
+    protected void calAvgTotal123(LottoAvg lottoAvg) {
+        view.setAvgTotal123("" + lottoAvg.getTotalNo123());
+    }
+
+    protected void calAvgTotal456(LottoAvg lottoAvg) {
+        view.setAvgTotal456("" + lottoAvg.getTotalNo456());
     }
 }

@@ -26,7 +26,7 @@ public interface MainPresenter {
     void openActivitySetting();
     void scanQRcode();
     void scanQRcodeResult(int requestCode, int resultCode, Intent intent);
-    void calAvgPickedNumber(Map<Integer, Integer> balls);
+    void updateAvgAllDatas(Map<Integer, Integer> balls);
 
     public interface View {
         void setVisibleUsingInfo(boolean visible);
@@ -35,5 +35,13 @@ public interface MainPresenter {
         void setHistoryAdapter(HistoryListAdapter adapter);
         void getScanQRcodeResult(IntentResult scanningResult);
         void setAvgPickedNumber(BarData data);
+        void setAvgTotalSum(String value);
+        void setAvgTotalSeq(String value);
+        void setAvgTotalLowHighCnt(String value);
+        void setAvgTotalOddEvenCnt(String value);
+        void setAvgTotalLeft(String value);
+        void setAvgTotalRight(String value);
+        void setAvgTotal123(String value);
+        void setAvgTotal456(String value);
     }
 }

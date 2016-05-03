@@ -68,7 +68,7 @@ public class Lotto extends RealmObject {
 
     private RealmList<LottoDrwtNo> drwtNos;
 
-//    @Ignore
+    @Ignore
     private int rank;
 
     @Ignore
@@ -242,183 +242,183 @@ public class Lotto extends RealmObject {
         this.includeBonus = includeBonus;
     }
 
-    private int[] getDrwtNoArr() {
-        return new int[]{ drwtNo1, drwtNo2, drwtNo3, drwtNo4, drwtNo5, drwtNo6 };
-    }
-
-    public int getTotalLowDigit() {
-        totalLowDigit = 0;
-
-        for (int value : getDrwtNoArr()) {
-            if (value <= MIDDLE_DIGIT) {
-                totalLowDigit += value;
-            } else {
-                break;
-            }
-        }
-        if (includeBonus && bnusNo <= MIDDLE_DIGIT) totalLowDigit += bnusNo;
-
-        return totalLowDigit;
-    }
-
-    public int getTotalHighDigit() {
-        totalHighDigit = 0;
-
-        for (int value : getDrwtNoArr()) {
-            if (value > MIDDLE_DIGIT) {
-                totalHighDigit += value;
-            } else {
-                break;
-            }
-        }
-        if (includeBonus && bnusNo > MIDDLE_DIGIT) totalHighDigit += bnusNo;
-
-        return totalHighDigit;
-    }
-
-    public int getTotalCountLowDigit() {
-        totalCountLowDigit = 0;
-
-        for (int value : getDrwtNoArr()) {
-            if (value <= MIDDLE_DIGIT) {
-                totalCountLowDigit++;
-            } else {
-                break;
-            }
-        }
-        if (includeBonus && bnusNo <= MIDDLE_DIGIT) totalCountLowDigit++;
-
-        return totalCountLowDigit;
-    }
-
-    public int getTotalCountHighDigit() {
-        totalCountHighDigit = 0;
-
-        for (int value : getDrwtNoArr()) {
-            if (value > MIDDLE_DIGIT) {
-                totalCountHighDigit++;
-            }
-        }
-        if (includeBonus && bnusNo > MIDDLE_DIGIT) totalCountHighDigit++;
-
-        return totalCountHighDigit;
-    }
-
-    public int getTotalOddDigit() {
-        totalOddDigit = 0;
-
-        for (int value : getDrwtNoArr()) {
-            if ((value % 2) > 0) {
-                totalOddDigit += value;
-            }
-        }
-        if (includeBonus && (bnusNo % 2) > 0) totalOddDigit += bnusNo;
-
-        return totalOddDigit;
-    }
-
-    public int getTotalEvenDigit() {
-        totalEvenDigit = 0;
-
-        for (int value : getDrwtNoArr()) {
-            if ((value % 2) == 0) {
-                totalEvenDigit += value;
-            }
-        }
-        if (includeBonus && (bnusNo % 2) == 0) totalEvenDigit += bnusNo;
-
-        return totalEvenDigit;
-    }
-
-    public int getTotalCountOddDigit() {
-        totalCountOddDigit = 0;
-
-        for (int value : getDrwtNoArr()) {
-            if ((value % 2) > 0) {
-                totalCountOddDigit++;
-            }
-        }
-        if (includeBonus && (bnusNo % 2) > 0) totalCountOddDigit++;
-
-        return totalCountOddDigit;
-    }
-
-    public int getTotalCountEvenDigit() {
-        totalCountEvenDigit = 0;
-
-        for (int value : getDrwtNoArr()) {
-            if ((value % 2) == 0) {
-                totalCountEvenDigit++;
-            }
-        }
-        if (includeBonus && (bnusNo % 2) == 0) totalCountEvenDigit++;
-
-        return totalCountEvenDigit;
-    }
-
-    public int getTotalSequentialDigit() {
-        totalSequentialDigit = 0;
-
-        if(isTotalSequentialDigit(drwtNo1, drwtNo2)) totalSequentialDigit++;
-        if(isTotalSequentialDigit(drwtNo2, drwtNo3)) totalSequentialDigit++;
-        if(isTotalSequentialDigit(drwtNo3, drwtNo4)) totalSequentialDigit++;
-        if(isTotalSequentialDigit(drwtNo4, drwtNo5)) totalSequentialDigit++;
-        if(isTotalSequentialDigit(drwtNo5, drwtNo6)) totalSequentialDigit++;
-        if(isTotalSequentialDigit(drwtNo6, drwtNo2)) totalSequentialDigit++;
-
-        return totalSequentialDigit;
-    }
-
-    private boolean isTotalSequentialDigit(int value, int value2) {
-        if ((value + 1) == value2) {
-            return true;
-        }
-        return false;
-    }
-
-    public int getTotalLeftDigit() {
-        totalLeftDigit = 0;
-
-        totalLeftDigit += drwtNo1 / 10;
-        totalLeftDigit += drwtNo2 / 10;
-        totalLeftDigit += drwtNo3 / 10;
-        totalLeftDigit += drwtNo4 / 10;
-        totalLeftDigit += drwtNo5 / 10;
-        totalLeftDigit += drwtNo6 / 10;
-        if(includeBonus) totalLeftDigit += bnusNo / 10;
-
-        return totalLeftDigit;
-    }
-
-    public int getTotalRightDigit() {
-        totalRightDigit = 0;
-
-        totalRightDigit += drwtNo1 % 10;
-        totalRightDigit += drwtNo2 % 10;
-        totalRightDigit += drwtNo3 % 10;
-        totalRightDigit += drwtNo4 % 10;
-        totalRightDigit += drwtNo5 % 10;
-        totalRightDigit += drwtNo6 % 10;
-        if(includeBonus) totalRightDigit += bnusNo % 10;
-
-        return totalRightDigit;
-    }
-
-    public int getTotalNo123() {
-        totalNo123 = drwtNo1 + drwtNo2 + drwtNo3;
-        return totalNo123;
-    }
-
-    public int getTotalNo456() {
-        totalNo456 = drwtNo4 + drwtNo5 + drwtNo6;
-        return totalNo456;
-    }
-
-    public int getTotalSum() {
-        totalSum = drwtNo1 + drwtNo2 + drwtNo3 + drwtNo4 + drwtNo5 + drwtNo6;
-        if(includeBonus) totalSum += bnusNo;
-        return  totalSum;
-    }
+//    private int[] getDrwtNoArr() {
+//        return new int[]{ drwtNo1, drwtNo2, drwtNo3, drwtNo4, drwtNo5, drwtNo6 };
+//    }
+//
+//    public int getTotalLowDigit() {
+//        totalLowDigit = 0;
+//
+//        for (int value : getDrwtNoArr()) {
+//            if (value <= MIDDLE_DIGIT) {
+//                totalLowDigit += value;
+//            } else {
+//                break;
+//            }
+//        }
+//        if (includeBonus && bnusNo <= MIDDLE_DIGIT) totalLowDigit += bnusNo;
+//
+//        return totalLowDigit;
+//    }
+//
+//    public int getTotalHighDigit() {
+//        totalHighDigit = 0;
+//
+//        for (int value : getDrwtNoArr()) {
+//            if (value > MIDDLE_DIGIT) {
+//                totalHighDigit += value;
+//            } else {
+//                break;
+//            }
+//        }
+//        if (includeBonus && bnusNo > MIDDLE_DIGIT) totalHighDigit += bnusNo;
+//
+//        return totalHighDigit;
+//    }
+//
+//    public int getTotalCountLowDigit() {
+//        totalCountLowDigit = 0;
+//
+//        for (int value : getDrwtNoArr()) {
+//            if (value <= MIDDLE_DIGIT) {
+//                totalCountLowDigit++;
+//            } else {
+//                break;
+//            }
+//        }
+//        if (includeBonus && bnusNo <= MIDDLE_DIGIT) totalCountLowDigit++;
+//
+//        return totalCountLowDigit;
+//    }
+//
+//    public int getTotalCountHighDigit() {
+//        totalCountHighDigit = 0;
+//
+//        for (int value : getDrwtNoArr()) {
+//            if (value > MIDDLE_DIGIT) {
+//                totalCountHighDigit++;
+//            }
+//        }
+//        if (includeBonus && bnusNo > MIDDLE_DIGIT) totalCountHighDigit++;
+//
+//        return totalCountHighDigit;
+//    }
+//
+//    public int getTotalOddDigit() {
+//        totalOddDigit = 0;
+//
+//        for (int value : getDrwtNoArr()) {
+//            if ((value % 2) > 0) {
+//                totalOddDigit += value;
+//            }
+//        }
+//        if (includeBonus && (bnusNo % 2) > 0) totalOddDigit += bnusNo;
+//
+//        return totalOddDigit;
+//    }
+//
+//    public int getTotalEvenDigit() {
+//        totalEvenDigit = 0;
+//
+//        for (int value : getDrwtNoArr()) {
+//            if ((value % 2) == 0) {
+//                totalEvenDigit += value;
+//            }
+//        }
+//        if (includeBonus && (bnusNo % 2) == 0) totalEvenDigit += bnusNo;
+//
+//        return totalEvenDigit;
+//    }
+//
+//    public int getTotalCountOddDigit() {
+//        totalCountOddDigit = 0;
+//
+//        for (int value : getDrwtNoArr()) {
+//            if ((value % 2) > 0) {
+//                totalCountOddDigit++;
+//            }
+//        }
+//        if (includeBonus && (bnusNo % 2) > 0) totalCountOddDigit++;
+//
+//        return totalCountOddDigit;
+//    }
+//
+//    public int getTotalCountEvenDigit() {
+//        totalCountEvenDigit = 0;
+//
+//        for (int value : getDrwtNoArr()) {
+//            if ((value % 2) == 0) {
+//                totalCountEvenDigit++;
+//            }
+//        }
+//        if (includeBonus && (bnusNo % 2) == 0) totalCountEvenDigit++;
+//
+//        return totalCountEvenDigit;
+//    }
+//
+//    public int getTotalSequentialDigit() {
+//        totalSequentialDigit = 0;
+//
+//        if(isTotalSequentialDigit(drwtNo1, drwtNo2)) totalSequentialDigit++;
+//        if(isTotalSequentialDigit(drwtNo2, drwtNo3)) totalSequentialDigit++;
+//        if(isTotalSequentialDigit(drwtNo3, drwtNo4)) totalSequentialDigit++;
+//        if(isTotalSequentialDigit(drwtNo4, drwtNo5)) totalSequentialDigit++;
+//        if(isTotalSequentialDigit(drwtNo5, drwtNo6)) totalSequentialDigit++;
+//        if(isTotalSequentialDigit(drwtNo6, drwtNo2)) totalSequentialDigit++;
+//
+//        return totalSequentialDigit;
+//    }
+//
+//    private boolean isTotalSequentialDigit(int value, int value2) {
+//        if ((value + 1) == value2) {
+//            return true;
+//        }
+//        return false;
+//    }
+//
+//    public int getTotalLeftDigit() {
+//        totalLeftDigit = 0;
+//
+//        totalLeftDigit += drwtNo1 / 10;
+//        totalLeftDigit += drwtNo2 / 10;
+//        totalLeftDigit += drwtNo3 / 10;
+//        totalLeftDigit += drwtNo4 / 10;
+//        totalLeftDigit += drwtNo5 / 10;
+//        totalLeftDigit += drwtNo6 / 10;
+//        if(includeBonus) totalLeftDigit += bnusNo / 10;
+//
+//        return totalLeftDigit;
+//    }
+//
+//    public int getTotalRightDigit() {
+//        totalRightDigit = 0;
+//
+//        totalRightDigit += drwtNo1 % 10;
+//        totalRightDigit += drwtNo2 % 10;
+//        totalRightDigit += drwtNo3 % 10;
+//        totalRightDigit += drwtNo4 % 10;
+//        totalRightDigit += drwtNo5 % 10;
+//        totalRightDigit += drwtNo6 % 10;
+//        if(includeBonus) totalRightDigit += bnusNo % 10;
+//
+//        return totalRightDigit;
+//    }
+//
+//    public int getTotalNo123() {
+//        totalNo123 = drwtNo1 + drwtNo2 + drwtNo3;
+//        return totalNo123;
+//    }
+//
+//    public int getTotalNo456() {
+//        totalNo456 = drwtNo4 + drwtNo5 + drwtNo6;
+//        return totalNo456;
+//    }
+//
+//    public int getTotalSum() {
+//        totalSum = drwtNo1 + drwtNo2 + drwtNo3 + drwtNo4 + drwtNo5 + drwtNo6;
+//        if(includeBonus) totalSum += bnusNo;
+//        return  totalSum;
+//    }
 
     public int getRank() {
         return rank;

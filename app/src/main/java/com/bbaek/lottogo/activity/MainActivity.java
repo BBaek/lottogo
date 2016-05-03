@@ -187,15 +187,15 @@ public class MainActivity extends Activity {
         drwtNos[5].setValue(lotto.getDrwtNo6());
         drwtNos[6].setValue(lotto.getBnusNo());
 
-        totalSum.setText("" + lotto.getTotalSum());
-        totalSeq.setText("" + lotto.getTotalSequentialDigit());
-        totalLowHighCnt.setText("저[" + lotto.getTotalCountLowDigit() + "]/고[" + lotto.getTotalCountHighDigit() + "]");
-        totalOddEvenCnt.setText("홀[" + lotto.getTotalCountOddDigit() + "]/짝[" + lotto.getTotalCountEvenDigit() + "]");
-//        totalOddEvenCnt.setText("홀[" + lotto.get);
-        totalLeft.setText("" + lotto.getTotalLeftDigit());
-        totalRight.setText("" + lotto.getTotalRightDigit());
-        total123.setText("" + lotto.getTotalNo123());
-        total456.setText("" + lotto.getTotalNo456());
+//        totalSum.setText("" + lotto.getTotalSum());
+//        totalSeq.setText("" + lotto.getTotalSequentialDigit());
+//        totalLowHighCnt.setText("저[" + lotto.getTotalCountLowDigit() + "]/고[" + lotto.getTotalCountHighDigit() + "]");
+//        totalOddEvenCnt.setText("홀[" + lotto.getTotalCountOddDigit() + "]/짝[" + lotto.getTotalCountEvenDigit() + "]");
+////        totalOddEvenCnt.setText("홀[" + lotto.get);
+//        totalLeft.setText("" + lotto.getTotalLeftDigit());
+//        totalRight.setText("" + lotto.getTotalRightDigit());
+//        total123.setText("" + lotto.getTotalNo123());
+//        total456.setText("" + lotto.getTotalNo456());
     }
 
     class HttpTask extends AsyncTask<Integer, Void, RealmList<Lotto>> {

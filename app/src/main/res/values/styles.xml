@@ -20,19 +20,20 @@
     </style>
 
     <style name="TableHeader">
-        <item name="android:layout_width">100dp</item>
-        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_width">20dp</item>
+        <item name="android:layout_height">25dp</item>
         <item name="android:layout_weight">1</item>
         <item name="android:gravity">center</item>
-        <item name="android:background">#aaaaaa</item>
+        <item name="android:background">@drawable/bg_rank_boarder</item>
+        <item name="android:textSize">10dp</item>
     </style>
 
     <style name="TableBody">
-        <item name="android:layout_width">80dp</item>
-        <item name="android:layout_height">50dp</item>
-        <item name="android:gravity">center</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">1</item>
-        <item name="android:background">#eaeaea</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">10dp</item>
     </style>
 
     <style name="GoInnerBackGround">

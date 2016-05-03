@@ -12,6 +12,7 @@ import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.AdapterView;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -61,10 +62,22 @@ public class MainNewActivity extends Activity implements MainPresenter.View {
     LinearLayout analRankContainer;
     TextView[] analRanks;
 
+    // scan
     ScanResultDialog rankDialog;
     WebView adWebView;
 
+    // avg
+    CheckBox excludeBonusNo; // include bounsNo
     HorizontalBarChart chart;
+    TextView totalSum;
+    TextView totalLowHighCnt;
+    TextView totalOddEvenCnt;
+    TextView totalSeq;
+    TextView totalLeft;
+    TextView totalRight;
+    TextView total123;
+    TextView total456;
+
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -162,6 +175,15 @@ public class MainNewActivity extends Activity implements MainPresenter.View {
 
         chart = (HorizontalBarChart) findViewById(R.id.chart);
 
+        totalSum = (TextView) findViewById(R.id.totalSum);
+        totalSeq = (TextView) findViewById(R.id.totalSeq);
+        totalLowHighCnt = (TextView) findViewById(R.id.lowHigh);
+        totalOddEvenCnt = (TextView) findViewById(R.id.oddEven);
+        totalLeft = (TextView) findViewById(R.id.totalLeft);
+        totalRight = (TextView) findViewById(R.id.totalRight);
+        total123 = (TextView) findViewById(R.id.total123);
+        total456 = (TextView) findViewById(R.id.total456);
+
         adWebView = (WebView) findViewById(R.id.adWebView);
         adWebView.getSettings().setJavaScriptEnabled(true); // enabled javaScript in WebView
     }
@@ -235,6 +257,46 @@ public class MainNewActivity extends Activity implements MainPresenter.View {
         chart.setDescription("");
         chart.animateY(1000);
         chart.invalidate();
+    }
+
+    @Override
+    public void setAvgTotalSum(String value) {
+        totalSum.setText(value);
+    }
+
+    @Override
+    public void setAvgTotalSeq(String value) {
+        totalSeq.setText(value);
+    }
+
+    @Override
+    public void setAvgTotalLowHighCnt(String value) {
+        totalLowHighCnt.setText(value);
+    }
+
+    @Override
+    public void setAvgTotalOddEvenCnt(String value) {
+        totalOddEvenCnt.setText(value);
+    }
+
+    @Override
+    public void setAvgTotalLeft(String value) {
+        totalLeft.setText(value);
+    }
+
+    @Override
+    public void setAvgTotalRight(String value) {
+        totalRight.setText(value);
+    }
+
+    @Override
+    public void setAvgTotal123(String value) {
+        total123.setText(value);
+    }
+
+    @Override
+    public void setAvgTotal456(String value) {
+        total456.setText(value);
     }
 
     @Override
