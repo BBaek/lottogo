@@ -15,6 +15,9 @@ import com.bbaek.lottogo.widget.NumberBall;
 import java.util.HashMap;
 import java.util.Map;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 
 /**
  * Created by woonsungbaek on 2016. 4. 28..
@@ -63,8 +66,7 @@ public class ExcludeGridAdapter extends BaseAdapter {
         final ExcludeGridViewHolder holder;
         if (view == null) {
             view = inflater.inflate(layoutId, parent, false);
-            holder = new ExcludeGridViewHolder();
-            holder.ball = (NumberBall) view.findViewById(R.id.gridBall);
+            holder = new ExcludeGridViewHolder(view);
             view.setTag(holder);
         } else {
             holder = (ExcludeGridViewHolder) view.getTag();
@@ -91,6 +93,10 @@ public class ExcludeGridAdapter extends BaseAdapter {
     }
 
     class ExcludeGridViewHolder {
-        NumberBall ball;
+        @Bind(R.id.gridBall) NumberBall ball;
+
+        public ExcludeGridViewHolder(View view) {
+            ButterKnife.bind(this, view);
+        }
     }
 }

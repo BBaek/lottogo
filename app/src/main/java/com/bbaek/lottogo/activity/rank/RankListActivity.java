@@ -12,14 +12,18 @@ import com.bbaek.lottogo.activity.MyApplication;
 import com.bbaek.lottogo.adapter.RankListAdapter;
 import com.bbaek.lottogo.utils.ViewUtils;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 public class RankListActivity extends AppCompatActivity {
     Context mContext;
-    ListView listView;
+    @Bind(R.id.rankList) ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rank_list);
+        ButterKnife.bind(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -33,7 +37,6 @@ public class RankListActivity extends AppCompatActivity {
         });
 
         mContext = this;
-        listView = (ListView) findViewById(R.id.rankList);
 
         RankListAdapter adapter = new RankListAdapter(mContext, MyApplication.lottoList);
         listView.setAdapter(adapter);

@@ -13,6 +13,9 @@ import com.bbaek.lottogo.widget.NumberBall;
 import java.util.List;
 import java.util.Map;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 
 /**
  * Created by woonsungbaek on 2016. 4. 26..
@@ -59,19 +62,13 @@ public class HistoryListAdapter extends BaseAdapter {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         View view = convertView;
-        final RankListViewHoler holder;
+        final HistoryListViewHoler holder;
         if (view == null) {
             view = Inflater.inflate(layoutId, parent, false);
-            holder = new RankListViewHoler();
-            holder.drwtNo1 = (NumberBall) view.findViewById(R.id.drwtNo1HisList);
-            holder.drwtNo2 = (NumberBall) view.findViewById(R.id.drwtNo2HisList);
-            holder.drwtNo3 = (NumberBall) view.findViewById(R.id.drwtNo3HisList);
-            holder.drwtNo4 = (NumberBall) view.findViewById(R.id.drwtNo4HisList);
-            holder.drwtNo5 = (NumberBall) view.findViewById(R.id.drwtNo5HisList);
-            holder.drwtNo6 = (NumberBall) view.findViewById(R.id.drwtNo6HisList);
+            holder = new HistoryListViewHoler(view);
             view.setTag(holder);
         } else {
-            holder = (RankListViewHoler) view.getTag();
+            holder = (HistoryListViewHoler) view.getTag();
         }
         List<Integer> list = lottoUtils.sortByValue(lottoList.get(position));
         if (list != null) {
@@ -86,12 +83,17 @@ public class HistoryListAdapter extends BaseAdapter {
         return view;
     }
 
-    class RankListViewHoler {
-        NumberBall drwtNo1;
-        NumberBall drwtNo2;
-        NumberBall drwtNo3;
-        NumberBall drwtNo4;
-        NumberBall drwtNo5;
-        NumberBall drwtNo6;
+    class HistoryListViewHoler {
+        @Bind(R.id.drwtNo1HisList) NumberBall drwtNo1;
+        @Bind(R.id.drwtNo2HisList) NumberBall drwtNo2;
+        @Bind(R.id.drwtNo3HisList) NumberBall drwtNo3;
+        @Bind(R.id.drwtNo4HisList) NumberBall drwtNo4;
+        @Bind(R.id.drwtNo5HisList) NumberBall drwtNo5;
+        @Bind(R.id.drwtNo6HisList) NumberBall drwtNo6;
+
+        public HistoryListViewHoler(View view) {
+            ButterKnife.bind(this, view);
+        }
+
     }
 }

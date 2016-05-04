@@ -2,10 +2,7 @@ package com.bbaek.lottogo;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.database.CursorJoiner;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.SurfaceHolder;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -24,7 +21,6 @@ import com.bbaek.lottogo.utils.BBLogger;
 import com.bbaek.lottogo.widget.NumberBall;
 
 import io.realm.RealmObject;
-import io.realm.RealmResults;
 
 /**
  * Created by woonsungbaek on 2016. 5. 2..
@@ -70,7 +66,8 @@ public class ScanResultDialog extends Dialog {
         setLayout();
         this.datas = new LottoQRParser(scanValue).getResultHistoryNo();
         if (this.datas != null) {
-            setLottoNos();
+            setViewLottoNos();
+            getRank();
 
             resultRepository.insert(datas, new TransactionCallback.OnInsertCallback() {
                 @Override
@@ -86,7 +83,8 @@ public class ScanResultDialog extends Dialog {
         }
     }
 
-    void setLottoNos() {
+    void setViewLottoNos() {
+        // 스캔한 회차번호(datas.getDrwNo())로 기존 lotto db에서 결과를 검색
         lottoRepository.selectLotto(datas.getDrwNo(), new TransactionCallback.OnSelectCallback() {
             @Override
             public void onSuccess(RealmObject result) {
@@ -101,15 +99,16 @@ public class ScanResultDialog extends Dialog {
                 drwtNo5.setValue(_lotto.getDrwtNo5());
                 drwtNo6.setValue(_lotto.getDrwtNo6());
                 drwtBunsNo.setValue(_lotto.getBnusNo());
-
                 datas.setAnnoDate(_lotto.getDrwNoDate());
-
-                for(int i = 0; i < datas.getDrwtNoList().size(); i++) {
-                    DrwtNos scanResult = datas.getDrwtNoList().get(i);
-                    scanResult.setRank(LottoUtils.compareRank(_lotto, scanResult));
-                }
             }
         });
+    }
+
+    void getRank() {
+        for(int i = 0; i < datas.getDrwtNoList().size(); i++) {
+            DrwtNos scanResult = datas.getDrwtNoList().get(i);
+            scanResult.setRank(LottoUtils.compareRank(lotto, scanResult));
+        }
     }
 
     public ScanResultDialog(Context context, String scanValue, View.OnClickListener onClickListener) {

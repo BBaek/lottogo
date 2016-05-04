@@ -3,9 +3,11 @@ package com.bbaek.lottogo;
 import android.content.Context;
 
 import com.bbaek.lottogo.Repository.CommonRepository;
+import com.bbaek.lottogo.Repository.LottoRepository;
 import com.bbaek.lottogo.Repository.TransactionCallback;
 import com.bbaek.lottogo.model.Lotto;
 import com.bbaek.lottogo.model.my.DrwtNos;
+import com.bbaek.lottogo.model.my.ResultHistoryNo;
 import com.bbaek.lottogo.utils.PreferenceUtils;
 
 import java.util.ArrayList;
@@ -28,30 +30,32 @@ public class LottoUtils {
     RealmResults<Lotto> rank4Result;
     RealmResults<Lotto> rank5Result;
 
-    public static int compareRank(Lotto ori, DrwtNos scan) {
+    public static int compareRank(Lotto drwLotto, DrwtNos datas) {
         int matchCnt = 0;
-        if(ori.getDrwtNo1() == scan.getDrwtNo1()) matchCnt++;
-        if(ori.getDrwtNo2() == scan.getDrwtNo2()) matchCnt++;
-        if(ori.getDrwtNo3() == scan.getDrwtNo3()) matchCnt++;
-        if(ori.getDrwtNo4() == scan.getDrwtNo4()) matchCnt++;
-        if(ori.getDrwtNo5() == scan.getDrwtNo5()) matchCnt++;
-        if(ori.getDrwtNo6() == scan.getDrwtNo6()) matchCnt++;
+        List<Integer> drwNoList = toArrayList(drwLotto);
+        if (drwNoList.contains(datas.getDrwtNo1())) matchCnt++;
+        if (drwNoList.contains(datas.getDrwtNo2())) matchCnt++;
+        if (drwNoList.contains(datas.getDrwtNo3())) matchCnt++;
+        if (drwNoList.contains(datas.getDrwtNo4())) matchCnt++;
+        if (drwNoList.contains(datas.getDrwtNo5())) matchCnt++;
+        if (drwNoList.contains(datas.getDrwtNo6())) matchCnt++;
 
         if (matchCnt == 6) {
             return 1;
         } else if (matchCnt == 5) {
-            if (ori.getBnusNo() == scan.getDrwtNo1()
-                    || ori.getBnusNo() == scan.getDrwtNo2()
-                    || ori.getBnusNo() == scan.getDrwtNo3()
-                    || ori.getBnusNo() == scan.getDrwtNo4()
-                    || ori.getBnusNo() == scan.getDrwtNo5()
-                    || ori.getBnusNo() == scan.getDrwtNo6()) {
+            return 3;
+        } else if (matchCnt == 4) {
+            int bnusNo = drwLotto.getBnusNo();
+            if (bnusNo == datas.getDrwtNo1()
+                    || bnusNo == datas.getDrwtNo2()
+                    || bnusNo == datas.getDrwtNo3()
+                    || bnusNo == datas.getDrwtNo4()
+                    || bnusNo == datas.getDrwtNo5()
+                    || bnusNo == datas.getDrwtNo6()) {
                 return 2;
             } else {
-                return 3;
+                return 4;
             }
-        } else if (matchCnt == 4) {
-            return 4;
         } else if (matchCnt == 3) {
             return 5;
         } else {
@@ -69,6 +73,21 @@ public class LottoUtils {
             list = new ArrayList(map.values());
             Collections.sort(list);
         }
+        return list;
+    }
+
+    public static List<Integer> toArrayList(Lotto lotto) {
+        List<Integer> list = null;
+        if (lotto != null) {
+            list = new ArrayList<>();
+            list.add(lotto.getDrwtNo1());
+            list.add(lotto.getDrwtNo2());
+            list.add(lotto.getDrwtNo3());
+            list.add(lotto.getDrwtNo4());
+            list.add(lotto.getDrwtNo5());
+            list.add(lotto.getDrwtNo6());
+        }
+
         return list;
     }
 

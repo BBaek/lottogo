@@ -17,6 +17,10 @@ import com.bbaek.lottogo.adapter.ExcludeGridAdapter;
 import com.bbaek.lottogo.utils.BBLogger;
 import com.bbaek.lottogo.utils.ViewUtils;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class ExcludeNoActivity extends AppCompatActivity implements ExcludePresenter.View {
     private BBLogger logger = new BBLogger(getClass().getSimpleName());
     private ExcludePresenter excludePresenter;
@@ -24,13 +28,15 @@ public class ExcludeNoActivity extends AppCompatActivity implements ExcludePrese
     Context context;
 
     /* view */
-    GridView ballGridView;
-    Button selectClearBtn;
+    @Bind(R.id.excludeGirdView) GridView ballGridView;
+    @Bind(R.id.excludeSelectedClsBtn) Button selectClearBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exclude_no);
+        ButterKnife.bind(this);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -46,17 +52,17 @@ public class ExcludeNoActivity extends AppCompatActivity implements ExcludePrese
         context = this;
         excludePresenter = new ExcludePresenterImpl(this);
         excludePresenter.setView(this);
-
-        ballGridView = (GridView) findViewById(R.id.excludeGirdView);
         ballGridView.setAdapter(new ExcludeGridAdapter(context));
+    }
 
-        selectClearBtn = (Button) findViewById(R.id.excludeSelectedClsBtn);
-        selectClearBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    @OnClick(R.id.excludeSelectedClsBtn)
+    void onClick(View view) {
+        ViewUtils.antiOverlapClick(view, 1000);
+        switch (view.getId()) {
+            case R.id.excludeSelectedClsBtn:
                 excludePresenter.clearAllSelected((ExcludeGridAdapter) ballGridView.getAdapter());
-            }
-        });
+                break;
+        }
     }
 
     @Override

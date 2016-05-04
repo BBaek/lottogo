@@ -30,15 +30,18 @@ public class SettingPresenterImpl implements SettingPresenter {
     public void openActivity(int position) {
         switch (position) {
             case 0:
-                ActivityModel.changeStartActivity(activity, IncludeNoActivity.class, false, null);
+                ActivityModel.changeStartActivity(activity, HistoryActivity.class, false, null);
                 break;
             case 1:
-                ActivityModel.changeStartActivity(activity, ExcludeNoActivity.class, false, null);
+                ActivityModel.changeStartActivity(activity, IncludeNoActivity.class, false, null);
                 break;
             case 2:
-                ActivityModel.changeStartActivity(activity, NewHistoryActivity.class, false, null);
+                ActivityModel.changeStartActivity(activity, ExcludeNoActivity.class, false, null);
                 break;
             case 3:
+                ActivityModel.changeStartActivity(activity, NewHistoryActivity.class, false, null);
+                break;
+            case 4:
                 ActivityModel.changeStartActivity(activity, ResultHistoryActivity.class, false, null);
                 break;
         }

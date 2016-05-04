@@ -1,9 +1,10 @@
 <resources>
     <string name="app_name">LottoGo</string>
-    <string name="title_activity_rank_list"></string>
-    <string name="title_activity_setting">Setting</string>
+    <string name="title_activity_rank_list">이전 당첨 번호 비교</string>
+    <string name="title_activity_setting">설정</string>
     <string name="title_activity_exclude_no">제외 번호 선택</string>
     <string name="title_activity_include_no">포함 번호 선택</string>
-    <string name="title_activity_new_history">NewHistoryActivity</string>
-    <string name="title_activity_result_history">ResultHistoryActivity</string>
+    <string name="title_activity_new_history">생성 이력 조회</string>
+    <string name="title_activity_result_history">결과 이력 조회</string>
+    <string name="title_activity_history">당첨 번호 조회</string>
 </resources>

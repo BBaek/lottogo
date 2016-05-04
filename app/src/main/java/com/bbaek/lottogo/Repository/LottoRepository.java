@@ -3,6 +3,7 @@ package com.bbaek.lottogo.Repository;
 import com.bbaek.lottogo.LottoUtils;
 import com.bbaek.lottogo.model.Lotto;
 import com.bbaek.lottogo.model.LottoDrwtNo;
+import com.bbaek.lottogo.model.my.DrwtNos;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -129,13 +130,16 @@ public class LottoRepository {
         }
     }
 
-    public void selectLotto(int key, TransactionCallback.OnSelectCallback callback) {
-        Realm realm = Realm.getDefaultInstance();
-        RealmObject results = realm.where(Lotto.class).equalTo("drwNo", key).findFirst();
-
+    public void selectLotto(int drwNo, TransactionCallback.OnSelectCallback callback) {
         if (callback != null) {
-            callback.onSuccess(results);
+            callback.onSuccess(selectLotto(drwNo));
         }
+    }
+
+    public RealmObject selectLotto(int drwNo) {
+        Realm realm = Realm.getDefaultInstance();
+        RealmObject results = realm.where(Lotto.class).equalTo("drwNo", drwNo).findFirst();
+        return results;
     }
 
     public RealmResults select(Class<? extends RealmObject> clazz) {
@@ -151,6 +155,23 @@ public class LottoRepository {
 
         return results;
     }
+
+//    public RealmResults selectMatchNumbers(int drwNo, DrwtNos drwtNos) {
+//        Realm realm = Realm.getDefaultInstance();
+//        RealmResults results = realm.where(Lotto.class)
+//                .beginGroup()
+//                .equalTo("drwNo", drwNo)
+//                .contains("drwtNos.drwtNoStr", LottoUtils.convertDoubleDigit(drwtNos.getDrwtNo1()))
+//                .contains("drwtNos.drwtNoStr", LottoUtils.convertDoubleDigit(drwtNos.getDrwtNo2()))
+//                .contains("drwtNos.drwtNoStr", LottoUtils.convertDoubleDigit(drwtNos.getDrwtNo3()))
+//                .contains("drwtNos.drwtNoStr", LottoUtils.convertDoubleDigit(drwtNos.getDrwtNo4()))
+//                .contains("drwtNos.drwtNoStr", LottoUtils.convertDoubleDigit(drwtNos.getDrwtNo5()))
+//                .contains("drwtNos.drwtNoStr", LottoUtils.convertDoubleDigit(drwtNos.getDrwtNo6()))
+//                .endGroup()
+//                .findAll();
+//
+//        return results;
+//    }
 
     public void delete(Class<? extends RealmObject> clazz, TransactionCallback.OnDeleteCallback callback) {
         Realm realm = Realm.getDefaultInstance();

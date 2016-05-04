@@ -15,6 +15,9 @@ import com.bbaek.lottogo.widget.NumberBall;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 
 /**
  * Created by woonsungbaek on 2016. 4. 26..
@@ -65,17 +68,7 @@ public class RankListAdapter  extends BaseAdapter {
         final RankListViewHoler holder;
         if (view == null) {
             view = Inflater.inflate(layoutId, parent, false);
-            holder = new RankListViewHoler();
-            holder.rank = (TextView) view.findViewById(R.id.rankList);
-            holder.drwNo = (TextView) view.findViewById(R.id.drwNoList);
-            holder.drwNoDate = (TextView) view.findViewById(R.id.drwDateList);
-            holder.drwtNo1 = (NumberBall) view.findViewById(R.id.drwtNo1List);
-            holder.drwtNo2 = (NumberBall) view.findViewById(R.id.drwtNo2List);
-            holder.drwtNo3 = (NumberBall) view.findViewById(R.id.drwtNo3List);
-            holder.drwtNo4 = (NumberBall) view.findViewById(R.id.drwtNo4List);
-            holder.drwtNo5 = (NumberBall) view.findViewById(R.id.drwtNo5List);
-            holder.drwtNo6 = (NumberBall) view.findViewById(R.id.drwtNo6List);
-            holder.drwtBunsNo = (NumberBall) view.findViewById(R.id.drwtBunsNoList);
+            holder = new RankListViewHoler(view);
             view.setTag(holder);
         } else {
             holder = (RankListViewHoler) view.getTag();
@@ -110,15 +103,19 @@ public class RankListAdapter  extends BaseAdapter {
     }
 
     class RankListViewHoler {
-        NumberBall drwtNo1;
-        NumberBall drwtNo2;
-        NumberBall drwtNo3;
-        NumberBall drwtNo4;
-        NumberBall drwtNo5;
-        NumberBall drwtNo6;
-        NumberBall drwtBunsNo;
-        TextView drwNoDate;
-        TextView drwNo;
-        TextView rank;
+        @Bind(R.id.drwtNo1List) NumberBall drwtNo1;
+        @Bind(R.id.drwtNo2List) NumberBall drwtNo2;
+        @Bind(R.id.drwtNo3List) NumberBall drwtNo3;
+        @Bind(R.id.drwtNo4List) NumberBall drwtNo4;
+        @Bind(R.id.drwtNo5List) NumberBall drwtNo5;
+        @Bind(R.id.drwtNo6List) NumberBall drwtNo6;
+        @Bind(R.id.drwtBunsNoList) NumberBall drwtBunsNo;
+        @Bind(R.id.drwDateList) TextView drwNoDate;
+        @Bind(R.id.drwNoList) TextView drwNo;
+        @Bind(R.id.rankList) TextView rank;
+
+        public RankListViewHoler(View view) {
+            ButterKnife.bind(this, view);
+        }
     }
 }

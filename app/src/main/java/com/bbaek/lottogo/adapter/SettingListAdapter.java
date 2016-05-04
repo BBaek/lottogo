@@ -17,6 +17,9 @@ import com.bbaek.lottogo.widget.NumberBall;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 
 /**
  * Created by woonsungbaek on 2016. 4. 26..
@@ -37,6 +40,7 @@ public class SettingListAdapter extends ArrayAdapter<String> {
 
     protected void initData() {
         settingList = new ArrayList<>();
+        settingList.add("당첨 번호 조회");
         settingList.add("포함 번호 선택");
         settingList.add("제외 번호 선택");
         settingList.add("생성 이력 조회");
@@ -56,25 +60,29 @@ public class SettingListAdapter extends ArrayAdapter<String> {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         View view = convertView;
-        final RankListViewHoler holder;
+        final SettingListViewHoler holder;
         if (view == null) {
             view = Inflater.inflate(layoutId, parent, false);
-            holder = new RankListViewHoler();
+            holder = new SettingListViewHoler(view);
             holder.title = (TextView) view.findViewById(R.id.settingTitle);
             holder.icon = (NumberBall) view.findViewById(R.id.settingIcon);
             view.setTag(holder);
         } else {
-            holder = (RankListViewHoler) view.getTag();
+            holder = (SettingListViewHoler) view.getTag();
         }
 
         holder.title.setText(settingList.get(position));
-        holder.icon.setValue((position + 1) * 10);
+        holder.icon.setValue((position + 1) * 5);
 
         return view;
     }
 
-    class RankListViewHoler {
-        TextView title;
-        NumberBall icon;
+    class SettingListViewHoler {
+        @Bind(R.id.settingTitle) TextView title;
+        @Bind(R.id.settingIcon) NumberBall icon;
+
+        public SettingListViewHoler(View view) {
+            ButterKnife.bind(this, view);
+        }
     }
 }
