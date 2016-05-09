@@ -142,9 +142,9 @@ public class LottoRepository {
         return results;
     }
 
-    public RealmResults select(Class<? extends RealmObject> clazz) {
+    public RealmResults selectAll() {
         Realm realm = Realm.getDefaultInstance();
-        RealmResults results = realm.where(clazz).findAll();
+        RealmResults results = realm.where(Lotto.class).findAll();
 
         return results;
     }
@@ -154,44 +154,5 @@ public class LottoRepository {
         RealmResults results = realm.where(Lotto.class).contains("drwtNos.drwtNoStr", LottoUtils.convertDoubleDigit(ballNo)).findAll();
 
         return results;
-    }
-
-//    public RealmResults selectMatchNumbers(int drwNo, DrwtNos drwtNos) {
-//        Realm realm = Realm.getDefaultInstance();
-//        RealmResults results = realm.where(Lotto.class)
-//                .beginGroup()
-//                .equalTo("drwNo", drwNo)
-//                .contains("drwtNos.drwtNoStr", LottoUtils.convertDoubleDigit(drwtNos.getDrwtNo1()))
-//                .contains("drwtNos.drwtNoStr", LottoUtils.convertDoubleDigit(drwtNos.getDrwtNo2()))
-//                .contains("drwtNos.drwtNoStr", LottoUtils.convertDoubleDigit(drwtNos.getDrwtNo3()))
-//                .contains("drwtNos.drwtNoStr", LottoUtils.convertDoubleDigit(drwtNos.getDrwtNo4()))
-//                .contains("drwtNos.drwtNoStr", LottoUtils.convertDoubleDigit(drwtNos.getDrwtNo5()))
-//                .contains("drwtNos.drwtNoStr", LottoUtils.convertDoubleDigit(drwtNos.getDrwtNo6()))
-//                .endGroup()
-//                .findAll();
-//
-//        return results;
-//    }
-
-    public void delete(Class<? extends RealmObject> clazz, TransactionCallback.OnDeleteCallback callback) {
-        Realm realm = Realm.getDefaultInstance();
-        RealmResults results = realm.where(clazz).findAll();
-        if (results != null) {
-            realm.beginTransaction();
-            results.clear();
-            realm.commitTransaction();
-        }
-
-        if (callback != null)
-            callback.onSuccess();
-    }
-
-    static public int getNextKey(Class<? extends RealmObject> clazz) {
-        Realm realm = Realm.getDefaultInstance();
-        try {
-            return realm.where(clazz).max("id").intValue() + 1;
-        } catch (Exception e) {
-            return 1;
-        }
     }
 }

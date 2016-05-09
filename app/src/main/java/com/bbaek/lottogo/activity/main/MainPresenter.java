@@ -1,10 +1,8 @@
 package com.bbaek.lottogo.activity.main;
 
 import android.content.Intent;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 
-import com.bbaek.lottogo.adapter.HistoryListAdapter;
+import com.bbaek.lottogo.adapter.GenHistoryListAdapter;
 import com.github.mikephil.charting.data.BarData;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -32,7 +30,7 @@ public interface MainPresenter {
         void setVisibleUsingInfo(boolean visible);
         void setBallNumberMetrix(Map<Integer, Integer> balls);
         void setRankText(String[] text);
-        void setHistoryAdapter(HistoryListAdapter adapter);
+        void setHistoryAdapter(GenHistoryListAdapter adapter);
         void getScanQRcodeResult(IntentResult scanningResult);
         void setAvgPickedNumber(BarData data);
         void setAvgTotalSum(String value);

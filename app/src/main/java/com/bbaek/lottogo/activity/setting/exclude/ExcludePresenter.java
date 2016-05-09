@@ -1,9 +1,6 @@
 package com.bbaek.lottogo.activity.setting.exclude;
 
 import com.bbaek.lottogo.adapter.ExcludeGridAdapter;
-import com.bbaek.lottogo.adapter.HistoryListAdapter;
-
-import java.util.Map;
 
 /**
  * Created by woonsungbaek on 2016. 4. 28..

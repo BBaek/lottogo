@@ -3,11 +3,10 @@ package com.bbaek.lottogo.activity.main;
 import android.content.Context;
 
 import com.bbaek.lottogo.LottoUtils;
-import com.bbaek.lottogo.Repository.CommonRepository;
 import com.bbaek.lottogo.Repository.InExcludeRepository;
 import com.bbaek.lottogo.Repository.LottoRepository;
 import com.bbaek.lottogo.activity.MyApplication;
-import com.bbaek.lottogo.adapter.HistoryListAdapter;
+import com.bbaek.lottogo.adapter.GenHistoryListAdapter;
 import com.bbaek.lottogo.model.my.InExcludeNo;
 import com.bbaek.lottogo.utils.BBLogger;
 import com.bbaek.lottogo.widget.NumberBallMetrix;
@@ -18,12 +17,10 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import io.realm.RealmObject;
 import io.realm.RealmResults;
 
 /**
@@ -34,13 +31,13 @@ public class MainModel {
 
     private Context context;
     private LottoUtils lottoUtils;
-    HistoryListAdapter historyAdapter;
+    GenHistoryListAdapter genHistoryAdapter;
     InExcludeRepository inExcludeRepository;
 
     public MainModel(Context context) {
         this.context = context;
         lottoUtils = new LottoUtils(context);
-        historyAdapter = new HistoryListAdapter(context, new ArrayList<Map<Integer, Integer>>());
+        genHistoryAdapter = new GenHistoryListAdapter(context, new ArrayList<Map<Integer, Integer>>());
         inExcludeRepository = new InExcludeRepository();
     }
 
@@ -86,18 +83,18 @@ public class MainModel {
         return results;
     }
 
-    public HistoryListAdapter getHistoryAdapter() {
-        return historyAdapter;
+    public GenHistoryListAdapter getGenHistoryAdapter() {
+        return genHistoryAdapter;
     }
 
     public void saveHistory(Map<Integer, Integer> balls) {
-        historyAdapter.addItem(balls);
-        historyAdapter.notifyDataSetChanged();
+        genHistoryAdapter.addItem(balls);
+        genHistoryAdapter.notifyDataSetChanged();
     }
 
     public void removeHistory(int pos) {
-        historyAdapter.removeItem(pos);
-        historyAdapter.notifyDataSetChanged();
+        genHistoryAdapter.removeItem(pos);
+        genHistoryAdapter.notifyDataSetChanged();
     }
 
     public void updateRankResults() {

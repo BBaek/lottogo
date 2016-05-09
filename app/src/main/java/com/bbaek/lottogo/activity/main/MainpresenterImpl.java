@@ -10,12 +10,10 @@ import com.bbaek.lottogo.activity.ActivityModel;
 import com.bbaek.lottogo.activity.MyApplication;
 import com.bbaek.lottogo.activity.rank.RankListActivity;
 import com.bbaek.lottogo.activity.setting.SettingActivity;
-import com.bbaek.lottogo.model.Lotto;
 import com.github.mikephil.charting.data.BarData;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -51,7 +49,7 @@ public class MainpresenterImpl implements MainPresenter {
 
     @Override
     public void drawBalls(int pos) {
-        drawBalls(mainModel.getHistoryAdapter().getItem(pos));
+        drawBalls(mainModel.getGenHistoryAdapter().getItem(pos));
     }
 
     @Override
@@ -75,13 +73,13 @@ public class MainpresenterImpl implements MainPresenter {
     @Override
     public void saveHistory(Map<Integer, Integer> balls) {
         mainModel.saveHistory(balls);
-        view.setHistoryAdapter(mainModel.getHistoryAdapter());
+        view.setHistoryAdapter(mainModel.getGenHistoryAdapter());
     }
 
     @Override
     public void removeHistory(int pos) {
         mainModel.removeHistory(pos);
-        view.setHistoryAdapter(mainModel.getHistoryAdapter());
+        view.setHistoryAdapter(mainModel.getGenHistoryAdapter());
     }
 
     @Override

@@ -20,17 +20,17 @@ import butterknife.ButterKnife;
 /**
  * Created by woonsungbaek on 2016. 4. 26..
  */
-public class HistoryListAdapter extends BaseAdapter {
+public class GenHistoryListAdapter extends BaseAdapter {
     private Context context;
     private int layoutId;
     private List<Map<Integer, Integer>> lottoList;
     private LottoUtils lottoUtils;
     private LayoutInflater Inflater;
 
-    public HistoryListAdapter(Context context, List<Map<Integer, Integer>> lottoList) {
+    public GenHistoryListAdapter(Context context, List<Map<Integer, Integer>> lottoList) {
         this.lottoList = lottoList;
         this.context = context;
-        this.layoutId = R.layout.layout_history_list;
+        this.layoutId = R.layout.layout_genhistory_list;
         this.lottoUtils = new LottoUtils(context);
         Inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }

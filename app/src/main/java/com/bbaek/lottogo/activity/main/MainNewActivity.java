@@ -4,42 +4,26 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bbaek.lottogo.LottoQRParser;
 import com.bbaek.lottogo.ScanResultDialog;
-import com.bbaek.lottogo.adapter.HistoryListAdapter;
+import com.bbaek.lottogo.adapter.GenHistoryListAdapter;
 import com.bbaek.lottogo.R;
 import com.bbaek.lottogo.utils.BBLogger;
 import com.bbaek.lottogo.utils.ViewUtils;
 import com.bbaek.lottogo.widget.NumberBallMetrix;
-import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
-import com.github.mikephil.charting.utils.ColorTemplate;
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.zxing.integration.android.IntentResult;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -208,7 +192,7 @@ public class MainNewActivity extends Activity implements MainPresenter.View {
     }
 
     @Override
-    public void setHistoryAdapter(HistoryListAdapter adapter) {
+    public void setHistoryAdapter(GenHistoryListAdapter adapter) {
         if (historyListView.getAdapter() == null) {
             historyListView.setAdapter(adapter);
         }
