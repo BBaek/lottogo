@@ -11,6 +11,8 @@ import com.bbaek.lottogo.R;
 import com.bbaek.lottogo.activity.MyApplication;
 import com.bbaek.lottogo.adapter.RankListAdapter;
 import com.bbaek.lottogo.utils.ViewUtils;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -18,6 +20,7 @@ import butterknife.ButterKnife;
 public class RankListActivity extends AppCompatActivity {
     Context mContext;
     @Bind(R.id.rankList) ListView listView;
+    @Bind(R.id.adView) AdView adView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,5 +43,9 @@ public class RankListActivity extends AppCompatActivity {
 
         RankListAdapter adapter = new RankListAdapter(mContext, MyApplication.lottoList);
         listView.setAdapter(adapter);
+
+        // AD
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
     }
 }

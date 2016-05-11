@@ -66,42 +66,48 @@ public class ScanResultDialog extends Dialog {
         setLayout();
         this.datas = new LottoQRParser(scanValue).getResultHistoryNo();
         if (this.datas != null) {
-            setViewLottoNos();
-            getRank();
+            this.lotto = getLottoNos();
+            if (this.lotto != null) {
+                setViewLottoNos();
+                getRank();
 
-            resultRepository.insert(datas, new TransactionCallback.OnInsertCallback() {
-                @Override
-                public void onSuccess() {
-                    logger.debug("onSuccess insert scan result history");
-                    ScanResultListAdapter adapter = new ScanResultListAdapter(context, lotto, datas.getDrwtNoList());
-                    scanResultList.setAdapter(adapter);
-                }
-            });
+                resultRepository.insert(datas, new TransactionCallback.OnInsertCallback() {
+                    @Override
+                    public void onSuccess() {
+                        logger.debug("onSuccess insert scan result history");
+                        ScanResultListAdapter adapter = new ScanResultListAdapter(context, lotto, datas.getDrwtNoList());
+                        scanResultList.setAdapter(adapter);
+                    }
+                });
+            } else {
+                Toast.makeText(context, "아직 추첨이 되지 않았습니다.", Toast.LENGTH_SHORT).show();
+                dismiss();
+            }
         } else {
             Toast.makeText(context, "바코드를 확인해 주세요.", Toast.LENGTH_SHORT).show();
-            this.dismiss();
+            dismiss();
         }
+    }
+    Lotto getLottoNos() {
+        RealmObject result = lottoRepository.selectLotto(datas.getDrwNo());
+        if (result != null) {
+            return (Lotto) result;
+        }
+        return null;
     }
 
     void setViewLottoNos() {
         // 스캔한 회차번호(datas.getDrwNo())로 기존 lotto db에서 결과를 검색
-        lottoRepository.selectLotto(datas.getDrwNo(), new TransactionCallback.OnSelectCallback() {
-            @Override
-            public void onSuccess(RealmObject result) {
-                Lotto _lotto = (Lotto) result;
-                lotto = _lotto;
-                drwNo.setText("" + _lotto.getDrwNo());
-                drwNoDate.setText("" + _lotto.getDrwNoDate());
-                drwtNo1.setValue(_lotto.getDrwtNo1());
-                drwtNo2.setValue(_lotto.getDrwtNo2());
-                drwtNo3.setValue(_lotto.getDrwtNo3());
-                drwtNo4.setValue(_lotto.getDrwtNo4());
-                drwtNo5.setValue(_lotto.getDrwtNo5());
-                drwtNo6.setValue(_lotto.getDrwtNo6());
-                drwtBunsNo.setValue(_lotto.getBnusNo());
-                datas.setAnnoDate(_lotto.getDrwNoDate());
-            }
-        });
+        drwNo.setText("" + lotto.getDrwNo());
+        drwNoDate.setText("" + lotto.getDrwNoDate());
+        drwtNo1.setValue(lotto.getDrwtNo1());
+        drwtNo2.setValue(lotto.getDrwtNo2());
+        drwtNo3.setValue(lotto.getDrwtNo3());
+        drwtNo4.setValue(lotto.getDrwtNo4());
+        drwtNo5.setValue(lotto.getDrwtNo5());
+        drwtNo6.setValue(lotto.getDrwtNo6());
+        drwtBunsNo.setValue(lotto.getBnusNo());
+        datas.setAnnoDate(lotto.getDrwNoDate());
     }
 
     void getRank() {

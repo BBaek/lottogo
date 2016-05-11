@@ -13,10 +13,13 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.bbaek.lottogo.R;
+import com.bbaek.lottogo.activity.MyApplication;
 import com.bbaek.lottogo.activity.main.MainPresenter;
 import com.bbaek.lottogo.adapter.SettingListAdapter;
 import com.bbaek.lottogo.utils.BBLogger;
 import com.bbaek.lottogo.utils.ViewUtils;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -29,6 +32,7 @@ public class SettingActivity extends AppCompatActivity implements SettingPresent
 
     Context context;
     @Bind(R.id.settingListView) ListView settingListView;
+    @Bind(R.id.adView) AdView adView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +57,11 @@ public class SettingActivity extends AppCompatActivity implements SettingPresent
         settingPresenter.setView(this);
 
         settingListView.setAdapter(new SettingListAdapter(context));
+
+        // AD
+//        AdRequest adRequest = new AdRequest.Builder().build();
+//        adView.loadAd(adRequest);
+        adView.loadAd(MyApplication.adRequest);
     }
 
     @OnItemClick(R.id.settingListView)

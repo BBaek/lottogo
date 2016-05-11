@@ -6,6 +6,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 
 import com.bbaek.lottogo.model.Lotto;
+import com.google.android.gms.ads.AdRequest;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class MyApplication extends Application {
     private static MyApplication instance;
     public static boolean DEBUG;
     public static List<Lotto> lottoList;
-
+    public static AdRequest adRequest;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -32,6 +33,7 @@ public class MyApplication extends Application {
         Realm.setDefaultConfiguration(config);
 
         this.DEBUG = isDebuggable(this);
+        this.adRequest = new AdRequest.Builder().build();
     }
 
     public static MyApplication getInstance() {

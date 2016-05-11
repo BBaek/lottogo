@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -100,7 +101,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
+                android:layout_height="40dp"
                 android:paddingRight="5dp"
                 android:paddingLeft="5dp"
                 android:orientation="horizontal">
@@ -147,7 +148,7 @@
             <LinearLayout
                 android:id="@+id/analRankContainer"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="35dp"
                 android:paddingRight="10dp"
                 android:paddingLeft="10dp"
                 android:paddingBottom="5dp"
@@ -254,105 +255,87 @@
                             android:textSize="10dp"
                             android:text="기타"/>
                     </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            style="@style/TableHeader"
-                            android:text="총합" />
-
-                        <TextView
-                            android:id="@+id/totalSum"
-                            style="@style/TableBody" />
-
-                        <TextView
-                            style="@style/TableHeader"
-                            android:text="연번" />
-
-                        <TextView
-                            android:id="@+id/totalSeq"
-                            style="@style/TableBody" />
-                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
+                        android:layout_height="match_parent"
                         android:orientation="horizontal">
-
-                        <TextView
-                            style="@style/TableHeader"
-                            android:text="좌합" />
-
-                        <TextView
-                            android:id="@+id/totalLeft"
-                            style="@style/TableBody" />
-
-                        <TextView
-                            style="@style/TableHeader"
-                            android:text="우합" />
-
-                        <TextView
-                            android:id="@+id/totalRight"
-                            style="@style/TableBody" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            style="@style/TableHeader"
-                            android:text="123합" />
-
-                        <TextView
-                            android:id="@+id/total123"
-                            style="@style/TableBody" />
-
-                        <TextView
-                            style="@style/TableHeader"
-                            android:text="456합" />
-
-                        <TextView
-                            android:id="@+id/total456"
-                            style="@style/TableBody" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            style="@style/TableHeader"
-                            android:text="저고율" />
-
-                        <TextView
-                            android:id="@+id/lowHigh"
-                            style="@style/TableBody" />
-
-                        <TextView
-                            style="@style/TableHeader"
-                            android:text="홀짝율" />
-
-                        <TextView
-                            android:id="@+id/oddEven"
-                            style="@style/TableBody" />
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <TextView
+                                style="@style/TableHeader"
+                                android:text="총합" />
+                            <TextView
+                                style="@style/TableHeader"
+                                android:text="좌합" />
+                            <TextView
+                                style="@style/TableHeader"
+                                android:text="123합" />
+                            <TextView
+                                style="@style/TableHeader"
+                                android:text="저고율" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <TextView
+                                android:id="@+id/totalSum"
+                                style="@style/TableBody" />
+                            <TextView
+                                android:id="@+id/totalLeft"
+                                style="@style/TableBody" />
+                            <TextView
+                                android:id="@+id/total123"
+                                style="@style/TableBody" />
+                            <TextView
+                                android:id="@+id/lowHigh"
+                                style="@style/TableBody" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <TextView
+                                style="@style/TableHeader"
+                                android:text="연번" />
+                            <TextView
+                                style="@style/TableHeader"
+                                android:text="우합" />
+                            <TextView
+                                style="@style/TableHeader"
+                                android:text="456합" />
+                            <TextView
+                                style="@style/TableHeader"
+                                android:text="홀짝율" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <TextView
+                                android:id="@+id/totalSeq"
+                                style="@style/TableBody" />
+                            <TextView
+                                android:id="@+id/totalRight"
+                                style="@style/TableBody" />
+                            <TextView
+                                android:id="@+id/total456"
+                                style="@style/TableBody" />
+                            <TextView
+                                android:id="@+id/oddEven"
+                                style="@style/TableBody" />
+                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-    <WebView
-        android:id="@+id/adWebView"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
+    <include
+        layout="@layout/layout_ad"
         android:layout_alignParentBottom="true"
-        android:background="@color/colorGoBackground"></WebView>
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent" />
 </RelativeLayout>

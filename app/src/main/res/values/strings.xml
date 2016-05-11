@@ -7,4 +7,7 @@
     <string name="title_activity_new_history">생성 이력 조회</string>
     <string name="title_activity_result_history">결과 이력 조회</string>
     <string name="title_activity_history">당첨 번호 조회</string>
+
+    <string name="banner_ad_unit_id">ca-app-pub-9644769996558228/1768893396</string>
+    <string name="server_client_id">437779822781-e3fvimisppmscl5kgihcp59j9g9g8p9m.apps.googleusercontent.com</string>
 </resources>

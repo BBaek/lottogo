@@ -12,10 +12,13 @@ import android.widget.GridView;
 import android.widget.Toast;
 
 import com.bbaek.lottogo.R;
+import com.bbaek.lottogo.activity.MyApplication;
 import com.bbaek.lottogo.activity.main.MainPresenter;
 import com.bbaek.lottogo.adapter.ExcludeGridAdapter;
 import com.bbaek.lottogo.utils.BBLogger;
 import com.bbaek.lottogo.utils.ViewUtils;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -30,6 +33,8 @@ public class ExcludeNoActivity extends AppCompatActivity implements ExcludePrese
     /* view */
     @Bind(R.id.excludeGirdView) GridView ballGridView;
     @Bind(R.id.excludeSelectedClsBtn) Button selectClearBtn;
+
+    @Bind(R.id.adView) AdView adView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +58,9 @@ public class ExcludeNoActivity extends AppCompatActivity implements ExcludePrese
         excludePresenter = new ExcludePresenterImpl(this);
         excludePresenter.setView(this);
         ballGridView.setAdapter(new ExcludeGridAdapter(context));
+
+        // AD
+        adView.loadAd(MyApplication.adRequest);
     }
 
     @OnClick(R.id.excludeSelectedClsBtn)

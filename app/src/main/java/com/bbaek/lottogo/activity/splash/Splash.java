@@ -24,6 +24,8 @@ import com.bbaek.lottogo.utils.PreferenceUtils;
 import java.io.IOException;
 import java.io.InputStream;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import io.realm.RealmList;
 import io.realm.RealmResults;
 
@@ -32,11 +34,13 @@ public class Splash extends FragmentActivity {
     Context mContext;
     CommonRepository commonRepository;
 
+    @Bind(R.id.splashVer) TextView versionText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-
+        ButterKnife.bind(this);
         this.mContext = this;
         commonRepository = new CommonRepository();
         getAppCurVersionCode();
@@ -62,8 +66,7 @@ public class Splash extends FragmentActivity {
         try {
             PackageInfo pi = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_META_DATA);
             PreferenceUtils.instance(mContext).putAppVersion(pi.versionName);
-            TextView versionText = (TextView) findViewById(R.id.splashVer);
-            versionText.setText(pi.versionName);
+            versionText.setText("" + pi.versionName);
             logger.debug("CurrentVersion: " + pi.versionName + " [" + pi.versionCode + "]");
         } catch (PackageManager.NameNotFoundException e) {
             logger.error("Failed get package info", e);

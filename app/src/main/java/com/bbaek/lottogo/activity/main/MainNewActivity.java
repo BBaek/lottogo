@@ -15,6 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bbaek.lottogo.ScanResultDialog;
+import com.bbaek.lottogo.activity.MyApplication;
 import com.bbaek.lottogo.adapter.GenHistoryListAdapter;
 import com.bbaek.lottogo.R;
 import com.bbaek.lottogo.utils.BBLogger;
@@ -22,6 +23,8 @@ import com.bbaek.lottogo.utils.ViewUtils;
 import com.bbaek.lottogo.widget.NumberBallMetrix;
 import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.data.BarData;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.zxing.integration.android.IntentResult;
 
 import java.util.Iterator;
@@ -54,7 +57,7 @@ public class MainNewActivity extends Activity implements MainPresenter.View {
 
     // scan
     ScanResultDialog rankDialog;
-    @Bind(R.id.adWebView) WebView adWebView;
+    @Bind(R.id.adView) AdView adView;
 
     // avg
     CheckBox excludeBonusNo; // include bounsNo
@@ -82,7 +85,10 @@ public class MainNewActivity extends Activity implements MainPresenter.View {
         progressDialog.setIndeterminate(true);
         progressDialog.setCancelable(false);
 
-        adWebView.getSettings().setJavaScriptEnabled(true); // enabled javaScript in WebView
+        // AD
+//        AdRequest adRequest = new AdRequest.Builder().build();
+//        adView.loadAd(adRequest);
+        adView.loadAd(MyApplication.adRequest);
     }
 
     @OnClick({R.id.mainGo, R.id.btnSetting, R.id.btnScan, R.id.analRankContainer})
@@ -148,7 +154,9 @@ public class MainNewActivity extends Activity implements MainPresenter.View {
     }
 
     private void genRandomBalls() {
-        if (!progressDialog.isShowing()) progressDialog.show();
+        if (!progressDialog.isShowing()) {
+            progressDialog.show();
+        }
         mainPresenter.showUsingInfo(false);
         mainPresenter.drawBalls();
     }

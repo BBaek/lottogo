@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "437779822781",
+    "project_id": "lottogo-8f533"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:437779822781:android:efebd26930c48990",
+        "android_client_info": {
+          "package_name": "com.bbaek.lottogo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "437779822781-e3fvimisppmscl5kgihcp59j9g9g8p9m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bbaek.lottogo",
+            "certificate_hash": "72A5D470BA651F482A689736E0FC68543AEDF409"
+          }
+        },
+        {
+          "client_id": "437779822781-4n2ntc3qrb6fae4009gd7i4hjuv3qvoq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBplLAxxY4fZNMB1RD27d97Q13iJyVIoqY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

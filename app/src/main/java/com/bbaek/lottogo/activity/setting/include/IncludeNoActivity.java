@@ -18,6 +18,8 @@ import com.bbaek.lottogo.adapter.ExcludeGridAdapter;
 import com.bbaek.lottogo.adapter.IncludeGridAdapter;
 import com.bbaek.lottogo.utils.BBLogger;
 import com.bbaek.lottogo.utils.ViewUtils;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -32,6 +34,8 @@ public class IncludeNoActivity extends AppCompatActivity implements IncludePrese
     /* view */
     @Bind(R.id.includeGirdView) GridView ballGridView;
     @Bind(R.id.includeSelectedClsBtn) Button selectClearBtn;
+
+    @Bind(R.id.adView) AdView adView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +60,10 @@ public class IncludeNoActivity extends AppCompatActivity implements IncludePrese
         includePresenter.setView(this);
 
         ballGridView.setAdapter(new IncludeGridAdapter(context));
+
+        // AD
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
     }
 
     @OnClick(R.id.includeSelectedClsBtn)

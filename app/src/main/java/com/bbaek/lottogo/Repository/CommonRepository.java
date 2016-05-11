@@ -138,6 +138,13 @@ public class CommonRepository {
         }
     }
 
+    public RealmObject selectLotto(int key) {
+        Realm realm = Realm.getDefaultInstance();
+        RealmObject results = realm.where(Lotto.class).equalTo("drwNo", key).findFirst();
+
+        return results;
+    }
+
     public RealmResults select(Class<? extends RealmObject> clazz) {
         Realm realm = Realm.getDefaultInstance();
         RealmResults results = realm.where(clazz).findAll();

@@ -8,9 +8,16 @@
     tools:context=".activity.setting.SettingActivity"
     tools:showIn="@layout/activity_setting">
 
-     <ListView
+    <ListView
         android:id="@+id/settingListView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_above="@+id/layout_ad" />
 
+    <include
+        android:id="@+id/layout_ad"
+        layout="@layout/layout_ad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
 </RelativeLayout>

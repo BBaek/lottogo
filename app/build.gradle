@@ -10,6 +10,8 @@ android {
         minSdkVersion 21
         targetSdkVersion 23
         multiDexEnabled true
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -45,5 +47,17 @@ dependencies {
     compile 'com.journeyapps:zxing-android-embedded:3.0.0@aar' // 추가
     compile 'com.google.zxing:core:3.2.0' // 추가
     compile 'com.github.PhilJay:MPAndroidChart:v2.2.4'
-    compile 'com.google.android.gms:play-services-appindexing:8.1.0'
+//    compile 'com.google.android.gms:play-services-appindexing:8.1.0'
+//    compile 'com.google.android.gms:play-services:8.+'
+    compile 'com.google.android.gms:play-services-ads:8.4.0'
+    // test
+    // App dependencies
+    compile 'com.android.support:support-annotations:23.2.1'
+    compile 'com.google.guava:guava:18.0'
+    // Testing-only dependencies
+    // Force usage of support annotations in the test app, since it is internally used by the runner module.
+    androidTestCompile 'com.android.support:support-annotations:23.2.1'
+    androidTestCompile 'com.android.support.test:runner:0.4.1'
+    androidTestCompile 'com.android.support.test:rules:0.4.1'
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.1'
 }

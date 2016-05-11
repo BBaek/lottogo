@@ -14,10 +14,12 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import com.bbaek.lottogo.R;
+import com.bbaek.lottogo.activity.MyApplication;
 import com.bbaek.lottogo.adapter.DrwHistoryListAdapter;
 import com.bbaek.lottogo.model.Lotto;
 import com.bbaek.lottogo.utils.BBLogger;
 import com.bbaek.lottogo.utils.ViewUtils;
+import com.google.android.gms.ads.AdView;
 
 import java.util.List;
 
@@ -30,8 +32,8 @@ public class DrwHistoryActivity extends AppCompatActivity implements DrwHistoryP
     Context context;
 
     /* View */
-    @Bind(R.id.historyListView)
-    ListView historyListView;
+    @Bind(R.id.historyListView) ListView historyListView;
+    @Bind(R.id.adView) AdView adView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +57,9 @@ public class DrwHistoryActivity extends AppCompatActivity implements DrwHistoryP
         drwHistoryPresenter = new DrwHistoryPresenterImpl(this);
         drwHistoryPresenter.setView(this);
         drwHistoryPresenter.getAllHistorys();
+
+        // AD
+        adView.loadAd(MyApplication.adRequest);
     }
 
 
