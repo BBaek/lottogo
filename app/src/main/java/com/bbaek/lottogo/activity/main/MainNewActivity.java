@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -16,6 +18,7 @@ import android.widget.TextView;
 
 import com.bbaek.lottogo.ScanResultDialog;
 import com.bbaek.lottogo.activity.MyApplication;
+import com.bbaek.lottogo.adapter.AvgGridAdapter;
 import com.bbaek.lottogo.adapter.GenHistoryListAdapter;
 import com.bbaek.lottogo.R;
 import com.bbaek.lottogo.utils.BBLogger;
@@ -27,7 +30,9 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.zxing.integration.android.IntentResult;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import butterknife.Bind;
@@ -45,12 +50,14 @@ public class MainNewActivity extends Activity implements MainPresenter.View {
     ProgressDialog progressDialog;
 
     /* view */
+    @Bind(R.id.useInfo) TextView useInfo;
     @Bind(R.id.ballNumberMetrix) NumberBallMetrix ballNumberMetrix;
     @Bind(R.id.mainGo) RelativeLayout mainGo;
     @Bind(R.id.btnSetting) ImageView btnSetting;
     @Bind(R.id.btnScan) ImageView btnScan;
     // history listview
     @Bind(R.id.historyList) ListView historyListView;
+    @Bind(R.id.avgResultContainer) LinearLayout avgResultContainer;
     // rank view
     @Bind(R.id.analRankContainer) LinearLayout analRankContainer;
     @Bind({R.id.rank1, R.id.rank2, R.id.rank3, R.id.rank4, R.id.rank5}) TextView[] analRanks;
@@ -61,15 +68,17 @@ public class MainNewActivity extends Activity implements MainPresenter.View {
 
     // avg
     CheckBox excludeBonusNo; // include bounsNo
+
+    @Bind(R.id.avgEtcGridView) GridView avgGridView;
     @Bind(R.id.chart) HorizontalBarChart chart;
-    @Bind(R.id.totalSum) TextView totalSum;
-    @Bind(R.id.totalSeq) TextView totalSeq;
-    @Bind(R.id.lowHigh) TextView totalLowHighCnt;
-    @Bind(R.id.oddEven) TextView totalOddEvenCnt;
-    @Bind(R.id.totalLeft) TextView totalLeft;
-    @Bind(R.id.totalRight) TextView totalRight;
-    @Bind(R.id.total123) TextView total123;
-    @Bind(R.id.total456) TextView total456;
+//    @Bind(R.id.totalSum) TextView totalSum;
+//    @Bind(R.id.totalSeq) TextView totalSeq;
+//    @Bind(R.id.lowHigh) TextView totalLowHighCnt;
+//    @Bind(R.id.oddEven) TextView totalOddEvenCnt;
+//    @Bind(R.id.totalLeft) TextView totalLeft;
+//    @Bind(R.id.totalRight) TextView totalRight;
+//    @Bind(R.id.total123) TextView total123;
+//    @Bind(R.id.total456) TextView total456;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,10 +94,20 @@ public class MainNewActivity extends Activity implements MainPresenter.View {
         progressDialog.setIndeterminate(true);
         progressDialog.setCancelable(false);
 
+        avgResultContainer.setVisibility(View.INVISIBLE);
+        avgGridView.setAdapter(new AvgGridAdapter(context, new ArrayList<String[]>()));
+
         // AD
-//        AdRequest adRequest = new AdRequest.Builder().build();
-//        adView.loadAd(adRequest);
         adView.loadAd(MyApplication.adRequest);
+
+//        excludeBonusNo = (CheckBox) findViewById(R.id.excludeBonusNo);
+//        excludeBonusNo.setChecked(true);
+//        excludeBonusNo.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                setData(lotto, isChecked);
+//            }
+//        });
     }
 
     @OnClick({R.id.mainGo, R.id.btnSetting, R.id.btnScan, R.id.analRankContainer})
@@ -168,11 +187,10 @@ public class MainNewActivity extends Activity implements MainPresenter.View {
 
     @Override
     public void setVisibleUsingInfo(boolean visible) {
-        TextView info = (TextView) findViewById(R.id.textInfo);
         if (visible) {
-            info.setVisibility(View.VISIBLE);
+            useInfo.setVisibility(View.VISIBLE);
         } else {
-            info.setVisibility(View.GONE);
+            useInfo.setVisibility(View.GONE);
         }
     }
 
@@ -233,43 +251,19 @@ public class MainNewActivity extends Activity implements MainPresenter.View {
     }
 
     @Override
-    public void setAvgTotalSum(String value) {
-        totalSum.setText(value);
+    public void setAvgAdapterDatas(List<String[]> items) {
+        AvgGridAdapter adapter = ((AvgGridAdapter) avgGridView.getAdapter());
+        adapter.setItem(items);
+        adapter.notifyDataSetChanged();
     }
 
     @Override
-    public void setAvgTotalSeq(String value) {
-        totalSeq.setText(value);
-    }
-
-    @Override
-    public void setAvgTotalLowHighCnt(String value) {
-        totalLowHighCnt.setText(value);
-    }
-
-    @Override
-    public void setAvgTotalOddEvenCnt(String value) {
-        totalOddEvenCnt.setText(value);
-    }
-
-    @Override
-    public void setAvgTotalLeft(String value) {
-        totalLeft.setText(value);
-    }
-
-    @Override
-    public void setAvgTotalRight(String value) {
-        totalRight.setText(value);
-    }
-
-    @Override
-    public void setAvgTotal123(String value) {
-        total123.setText(value);
-    }
-
-    @Override
-    public void setAvgTotal456(String value) {
-        total456.setText(value);
+    public void setVisibleAvgResultContainer(boolean visible) {
+        if (visible) {
+            avgResultContainer.setVisibility(View.VISIBLE);
+        } else {
+            avgResultContainer.setVisibility(View.INVISIBLE);
+        }
     }
 
     @Override

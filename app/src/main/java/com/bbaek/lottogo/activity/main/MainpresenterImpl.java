@@ -14,6 +14,7 @@ import com.github.mikephil.charting.data.BarData;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -39,6 +40,7 @@ public class MainpresenterImpl implements MainPresenter {
     public void showUsingInfo(boolean isShow) {
         if (view != null) {
             view.setVisibleUsingInfo(isShow);
+            view.setVisibleAvgResultContainer(!isShow);
         }
     }
 
@@ -115,14 +117,22 @@ public class MainpresenterImpl implements MainPresenter {
     public void updateAvgAllDatas(Map<Integer, Integer> balls) {
         calAvgPickedNumber(balls);
         LottoAvg lottoAvg = new LottoAvg(balls);
-        calAvgTotalSum(lottoAvg);
-        calAvgTotalSeq(lottoAvg);
-        calAvgTotalLowHighCnt(lottoAvg);
-        calAvgTotalOddEvenCnt(lottoAvg);
-        calAvgTotalLeft(lottoAvg);
-        calAvgTotalRight(lottoAvg);
-        calAvgTotal123(lottoAvg);
-        calAvgTotal456(lottoAvg);
+        view.setAvgAdapterDatas(calAvgs(lottoAvg));
+    }
+
+    private List<String[]> calAvgs(LottoAvg lottoAvg) {
+        List<String[]> result = new ArrayList<>();
+        result.add(calAvgTotalSum(lottoAvg));
+        result.add(calAvgTotalSeq(lottoAvg));
+        result.add(calAvgTotalDummy(lottoAvg));
+        result.add(calAvgTotalLowHighCnt(lottoAvg));
+        result.add(calAvgTotalLeft(lottoAvg));
+        result.add(calAvgTotal123(lottoAvg));
+        result.add(calAvgTotalOddEvenCnt(lottoAvg));
+        result.add(calAvgTotalRight(lottoAvg));
+        result.add(calAvgTotal456(lottoAvg));
+
+        return result;
     }
 
     protected void calAvgPickedNumber(Map<Integer, Integer> balls) {
@@ -130,35 +140,39 @@ public class MainpresenterImpl implements MainPresenter {
         view.setAvgPickedNumber(new BarData(mainModel.getHBallLabel(ballList), mainModel.getHBarDataSet(ballList)));
     }
 
-    protected void calAvgTotalSum(LottoAvg lottoAvg) {
-        view.setAvgTotalSum("" + lottoAvg.getTotalSum());
+    protected String[] calAvgTotalSum(LottoAvg lottoAvg) {
+        return new String[]{"총합", "" + lottoAvg.getTotalSum()};
     }
 
-    protected void calAvgTotalSeq(LottoAvg lottoAvg) {
-        view.setAvgTotalSeq("" + lottoAvg.getTotalSequentialDigit());
+    protected String[] calAvgTotalDummy(LottoAvg lottoAvg) {
+        return new String[]{"-", "-"};
     }
 
-    protected void calAvgTotalLowHighCnt(LottoAvg lottoAvg) {
-        view.setAvgTotalLowHighCnt("저[" + lottoAvg.getTotalCountLowDigit() + "]/고[" + lottoAvg.getTotalCountHighDigit() + "]");
+    protected String[] calAvgTotalSeq(LottoAvg lottoAvg) {
+        return new String[]{"연번", "" + lottoAvg.getTotalSequentialDigit()};
     }
 
-    protected void calAvgTotalOddEvenCnt(LottoAvg lottoAvg) {
-        view.setAvgTotalOddEvenCnt("홀[" + lottoAvg.getTotalCountOddDigit() + "]/짝[" + lottoAvg.getTotalCountEvenDigit() + "]");
+    protected String[] calAvgTotalLowHighCnt(LottoAvg lottoAvg) {
+        return new String[]{"고저율", "고[" + lottoAvg.getTotalCountHighDigit() + "]/저[" + lottoAvg.getTotalCountLowDigit() + "]"};
     }
 
-    protected void calAvgTotalLeft(LottoAvg lottoAvg) {
-        view.setAvgTotalLeft("" + lottoAvg.getTotalLeftDigit());
+    protected String[] calAvgTotalOddEvenCnt(LottoAvg lottoAvg) {
+        return new String[]{"홀짝율", "홀[" + lottoAvg.getTotalCountOddDigit() + "]/짝[" + lottoAvg.getTotalCountEvenDigit() + "]"};
     }
 
-    protected void calAvgTotalRight(LottoAvg lottoAvg) {
-        view.setAvgTotalRight("" + lottoAvg.getTotalRightDigit());
+    protected String[] calAvgTotalLeft(LottoAvg lottoAvg) {
+        return new String[]{"좌변합", "" + lottoAvg.getTotalLeftDigit()};
     }
 
-    protected void calAvgTotal123(LottoAvg lottoAvg) {
-        view.setAvgTotal123("" + lottoAvg.getTotalNo123());
+    protected String[] calAvgTotalRight(LottoAvg lottoAvg) {
+        return new String[]{"우변합", "" + lottoAvg.getTotalRightDigit()};
     }
 
-    protected void calAvgTotal456(LottoAvg lottoAvg) {
-        view.setAvgTotal456("" + lottoAvg.getTotalNo456());
+    protected String[] calAvgTotal123(LottoAvg lottoAvg) {
+        return new String[]{"123합", "" + lottoAvg.getTotalNo123()};
+    }
+
+    protected String[] calAvgTotal456(LottoAvg lottoAvg) {
+        return new String[]{"456합", "" + lottoAvg.getTotalNo456()};
     }
 }

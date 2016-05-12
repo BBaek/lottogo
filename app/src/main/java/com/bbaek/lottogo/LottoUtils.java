@@ -30,6 +30,20 @@ public class LottoUtils {
     RealmResults<Lotto> rank4Result;
     RealmResults<Lotto> rank5Result;
 
+    public int getBallColor(int number) {
+        if (number < 11) {
+            return context.getResources().getColor(R.color.colorBallYellow);
+        } else if (number >= 11 && number < 21) {
+            return context.getResources().getColor(R.color.colorBallBlue);
+        } else if (number >= 21 && number < 31) {
+            return context.getResources().getColor(R.color.colorBallRed);
+        } else if (number >= 31 && number < 41) {
+            return context.getResources().getColor(R.color.colorBallPurple);
+        } else {
+            return context.getResources().getColor(R.color.colorBallGreen);
+        }
+    }
+
     public static int compareRank(Lotto drwLotto, DrwtNos datas) {
         int matchCnt = 0;
         List<Integer> drwNoList = toArrayList(drwLotto);

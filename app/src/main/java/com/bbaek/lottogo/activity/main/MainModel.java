@@ -104,15 +104,16 @@ public class MainModel {
     public ArrayList<IBarDataSet> getHBarDataSet(List<Integer> balls) {
         LottoRepository repository = new LottoRepository();
         ArrayList<IBarDataSet> dataSets = null;
+        List<Integer> colors = new ArrayList<>();
         ArrayList<BarEntry> entries = new ArrayList<>();
         for (int i = 0; i < balls.size(); i++) {
             entries.add(new BarEntry(repository.selectAvgPickedNumber(balls.get(i)).size(), i));
+            colors.add(lottoUtils.getBallColor(balls.get(i)));
         }
 
         BarDataSet barDataSet1 = new BarDataSet(entries, "");
         barDataSet1.setDrawValues(false);
-        barDataSet1.setColors(ColorTemplate.COLORFUL_COLORS);
-
+        barDataSet1.setColors(colors);
         dataSets = new ArrayList<>();
         dataSets.add(barDataSet1);
         return dataSets;

@@ -6,10 +6,17 @@
 
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorBlack">#000000</color>
+    <color name="colorGray">#CCCCCC</color>
 
 
     <color name="colorGoBackground">#DEA344</color>
     <color name="colorGoLine">#65310D</color>
     <color name="colorBallText">#414141</color>
+
+    <color name="colorBallBlue">#8ec6e5</color>
+    <color name="colorBallGreen">#6fcd9f</color>
+    <color name="colorBallPurple">#a7a3dc</color>
+    <color name="colorBallRed">#ef8d82</color>
+    <color name="colorBallYellow">#fbc34b</color>
 
 </resources>

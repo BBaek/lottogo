@@ -6,6 +6,7 @@ import com.bbaek.lottogo.adapter.GenHistoryListAdapter;
 import com.github.mikephil.charting.data.BarData;
 import com.google.zxing.integration.android.IntentResult;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -28,18 +29,12 @@ public interface MainPresenter {
 
     public interface View {
         void setVisibleUsingInfo(boolean visible);
+        void setVisibleAvgResultContainer(boolean visible);
         void setBallNumberMetrix(Map<Integer, Integer> balls);
         void setRankText(String[] text);
         void setHistoryAdapter(GenHistoryListAdapter adapter);
         void getScanQRcodeResult(IntentResult scanningResult);
         void setAvgPickedNumber(BarData data);
-        void setAvgTotalSum(String value);
-        void setAvgTotalSeq(String value);
-        void setAvgTotalLowHighCnt(String value);
-        void setAvgTotalOddEvenCnt(String value);
-        void setAvgTotalLeft(String value);
-        void setAvgTotalRight(String value);
-        void setAvgTotal123(String value);
-        void setAvgTotal456(String value);
+        void setAvgAdapterDatas(List<String[]> items);
     }
 }
