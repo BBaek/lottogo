@@ -6,10 +6,10 @@
     <solid
         android:color="@color/colorGoBackground"/>
 
-    <corners android:radius="10dp" />
-    <!--<stroke-->
-        <!--android:color="@color/colorGoLine"-->
-        <!--android:width="2dp"/>-->
+    <corners android:radius="5dp" />
+    <stroke
+        android:color="@color/colorWhite"
+        android:width="1dp"/>
     <!--<padding-->
     <!--android:right="10dp"-->
     <!--android:left="10dp"/>-->

@@ -145,7 +145,7 @@ public class MainpresenterImpl implements MainPresenter {
     }
 
     protected String[] calAvgTotalDummy(LottoAvg lottoAvg) {
-        return new String[]{"-", "-"};
+        return new String[]{"", ""};
     }
 
     protected String[] calAvgTotalSeq(LottoAvg lottoAvg) {
