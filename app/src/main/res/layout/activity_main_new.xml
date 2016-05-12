@@ -120,7 +120,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="10dp"
-                        android:text="생성 번호별 당첨 횟수"/>
+                        android:text="이전 당첨 번호 비교 결과"/>
                 </LinearLayout>
                 <LinearLayout
                     android:id="@+id/analRankContainer"
@@ -256,7 +256,7 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="170dp"
+                android:layout_width="180dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
@@ -279,7 +279,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="10dp"
-                        android:text="생성 번호별 당첨 횟수"/>
+                        android:text="번호별 당첨 횟수"/>
                 </LinearLayout>
 
                 <com.github.mikephil.charting.charts.HorizontalBarChart
@@ -328,7 +328,7 @@
 
                     <GridView
                         android:id="@+id/avgEtcGridView"
-                        android:layout_width="182dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:columnWidth="60dp"
                         android:gravity="center"
@@ -337,7 +337,7 @@
                         android:horizontalSpacing="1px"
                         android:numColumns="auto_fit"
                         android:background="@color/colorGray"
-                        android:stretchMode="spacingWidth"/>
+                        android:stretchMode="columnWidth"/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
