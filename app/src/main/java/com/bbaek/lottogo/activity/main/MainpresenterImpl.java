@@ -17,6 +17,7 @@ import com.google.zxing.integration.android.IntentResult;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 /**
  * Created by woonsungbaek on 2016. 4. 27..
@@ -37,10 +38,10 @@ public class MainpresenterImpl implements MainPresenter {
     }
 
     @Override
-    public void showUsingInfo(boolean isShow) {
+    public void setVisibleViews(boolean isShow) {
         if (view != null) {
-            view.setVisibleUsingInfo(isShow);
-            view.setVisibleAvgResultContainer(!isShow);
+            view.setVisibleUsingInfo(!isShow);
+            view.setVisibleAvgResultContainer(isShow);
         }
     }
 
@@ -124,7 +125,7 @@ public class MainpresenterImpl implements MainPresenter {
         List<String[]> result = new ArrayList<>();
         result.add(calAvgTotalSum(lottoAvg));
         result.add(calAvgTotalSeq(lottoAvg));
-        result.add(calAvgTotalDummy(lottoAvg));
+//        result.add(calAvgTotalDummy(lottoAvg));
         result.add(calAvgTotalLowHighCnt(lottoAvg));
         result.add(calAvgTotalLeft(lottoAvg));
         result.add(calAvgTotal123(lottoAvg));

@@ -90,7 +90,7 @@ public class MainNewActivity extends Activity implements MainPresenter.View {
         mainPresenter.setView(this);
 
         progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage("번호를 찾고 있습니다.\n잠시만 기다려주세요.");
+        progressDialog.setMessage("번호를 생성하고 있습니다.\n잠시만 기다려주세요.");
         progressDialog.setIndeterminate(true);
         progressDialog.setCancelable(false);
 
@@ -173,11 +173,11 @@ public class MainNewActivity extends Activity implements MainPresenter.View {
     }
 
     private void genRandomBalls() {
-        if (!progressDialog.isShowing()) {
+//        if (!progressDialog.isShowing()) {
             progressDialog.show();
-        }
-        mainPresenter.showUsingInfo(false);
+//        }
         mainPresenter.drawBalls();
+        mainPresenter.setVisibleViews(true);
     }
 
     @Override
@@ -213,8 +213,6 @@ public class MainNewActivity extends Activity implements MainPresenter.View {
         analRanks[2].setText(text[2]);
         analRanks[3].setText(text[3]);
         analRanks[4].setText(text[4]);
-
-        progressDialog.dismiss();
     }
 
     @Override
@@ -255,6 +253,8 @@ public class MainNewActivity extends Activity implements MainPresenter.View {
         AvgGridAdapter adapter = ((AvgGridAdapter) avgGridView.getAdapter());
         adapter.setItem(items);
         adapter.notifyDataSetChanged();
+
+        progressDialog.dismiss();
     }
 
     @Override

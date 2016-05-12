@@ -14,7 +14,7 @@ import java.util.Map;
  */
 public interface MainPresenter {
     void setView(MainPresenter.View view);
-    void showUsingInfo(boolean isShow);
+    void setVisibleViews(boolean isShow);
     void drawBalls();
     void drawBalls(int pos);
     void drawBalls(Map<Integer, Integer> balls);
