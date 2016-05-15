@@ -6,8 +6,10 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 
 import com.bbaek.lottogo.model.Lotto;
+import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.ads.AdRequest;
 
+import io.fabric.sdk.android.Fabric;
 import java.util.List;
 
 import io.realm.Realm;
@@ -24,6 +26,7 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Fabric.with(this, new Crashlytics());
         instance = this;
         RealmConfiguration config = new RealmConfiguration.Builder(getApplicationContext())
                 .name("lotto.realm")

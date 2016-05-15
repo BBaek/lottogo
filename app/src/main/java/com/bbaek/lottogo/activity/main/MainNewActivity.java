@@ -71,14 +71,6 @@ public class MainNewActivity extends Activity implements MainPresenter.View {
 
     @Bind(R.id.avgEtcGridView) GridView avgGridView;
     @Bind(R.id.chart) HorizontalBarChart chart;
-//    @Bind(R.id.totalSum) TextView totalSum;
-//    @Bind(R.id.totalSeq) TextView totalSeq;
-//    @Bind(R.id.lowHigh) TextView totalLowHighCnt;
-//    @Bind(R.id.oddEven) TextView totalOddEvenCnt;
-//    @Bind(R.id.totalLeft) TextView totalLeft;
-//    @Bind(R.id.totalRight) TextView totalRight;
-//    @Bind(R.id.total123) TextView total123;
-//    @Bind(R.id.total456) TextView total456;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -173,6 +165,7 @@ public class MainNewActivity extends Activity implements MainPresenter.View {
     }
 
     private void genRandomBalls() {
+//        throw new RuntimeException("This is a crash");
 //        if (!progressDialog.isShowing()) {
             progressDialog.show();
 //        }

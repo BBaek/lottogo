@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.bbaek.lottogo"
-    android:versionCode="110"
-    android:versionName="1.10">
+    android:versionCode="111"
+    android:versionName="1.11">
 
     <uses-sdk
         android:minSdkVersion="19"
@@ -91,6 +91,9 @@
             android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
             android:theme="@android:style/Theme.Translucent" />
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="e63159927bfbc950e3e41c80b9a54bf40c893fcb" />
     </application>
 
 </manifest>
