@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <com.bbaek.lottogo.widget.NumberBall
+        <com.b2soft.lottogo.widget.NumberBall
             android:id="@+id/settingIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

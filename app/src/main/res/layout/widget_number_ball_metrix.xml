@@ -11,79 +11,79 @@
         android:columnCount="5"
         android:rowCount="5">
 
-        <com.bbaek.lottogo.widget.NumberBall
+        <com.b2soft.lottogo.widget.NumberBall
             android:id="@+id/ball1"
             style="@style/GoBall"/>
-        <com.bbaek.lottogo.widget.NumberBall
+        <com.b2soft.lottogo.widget.NumberBall
             android:id="@+id/ball2"
             style="@style/GoBall"/>
-        <com.bbaek.lottogo.widget.NumberBall
+        <com.b2soft.lottogo.widget.NumberBall
             android:id="@+id/ball3"
             style="@style/GoBall"/>
-        <com.bbaek.lottogo.widget.NumberBall
+        <com.b2soft.lottogo.widget.NumberBall
             android:id="@+id/ball4"
             style="@style/GoBall"/>
-        <com.bbaek.lottogo.widget.NumberBall
+        <com.b2soft.lottogo.widget.NumberBall
             android:id="@+id/ball5"
             style="@style/GoBall"/>
-        <com.bbaek.lottogo.widget.NumberBall
+        <com.b2soft.lottogo.widget.NumberBall
             android:id="@+id/ball6"
             style="@style/GoBall"/>
-        <com.bbaek.lottogo.widget.NumberBall
+        <com.b2soft.lottogo.widget.NumberBall
             android:id="@+id/ball7"
             style="@style/GoBall"/>
-        <com.bbaek.lottogo.widget.NumberBall
+        <com.b2soft.lottogo.widget.NumberBall
             android:id="@+id/ball8"
             style="@style/GoBall"/>
-        <com.bbaek.lottogo.widget.NumberBall
+        <com.b2soft.lottogo.widget.NumberBall
             android:id="@+id/ball9"
             style="@style/GoBall"/>
-        <com.bbaek.lottogo.widget.NumberBall
+        <com.b2soft.lottogo.widget.NumberBall
             android:id="@+id/ball10"
             style="@style/GoBall"/>
-        <com.bbaek.lottogo.widget.NumberBall
+        <com.b2soft.lottogo.widget.NumberBall
             android:id="@+id/ball11"
             style="@style/GoBall"/>
-        <com.bbaek.lottogo.widget.NumberBall
+        <com.b2soft.lottogo.widget.NumberBall
             android:id="@+id/ball12"
             style="@style/GoBall"/>
-        <com.bbaek.lottogo.widget.NumberBall
+        <com.b2soft.lottogo.widget.NumberBall
             android:id="@+id/ball13"
             style="@style/GoBall"/>
-        <com.bbaek.lottogo.widget.NumberBall
+        <com.b2soft.lottogo.widget.NumberBall
             android:id="@+id/ball14"
             style="@style/GoBall"/>
-        <com.bbaek.lottogo.widget.NumberBall
+        <com.b2soft.lottogo.widget.NumberBall
             android:id="@+id/ball15"
             style="@style/GoBall"/>
-        <com.bbaek.lottogo.widget.NumberBall
+        <com.b2soft.lottogo.widget.NumberBall
             android:id="@+id/ball16"
             style="@style/GoBall"/>
-        <com.bbaek.lottogo.widget.NumberBall
+        <com.b2soft.lottogo.widget.NumberBall
             android:id="@+id/ball17"
             style="@style/GoBall"/>
-        <com.bbaek.lottogo.widget.NumberBall
+        <com.b2soft.lottogo.widget.NumberBall
             android:id="@+id/ball18"
             style="@style/GoBall"/>
-        <com.bbaek.lottogo.widget.NumberBall
+        <com.b2soft.lottogo.widget.NumberBall
             android:id="@+id/ball19"
             style="@style/GoBall"/>
-        <com.bbaek.lottogo.widget.NumberBall
+        <com.b2soft.lottogo.widget.NumberBall
             android:id="@+id/ball20"
             style="@style/GoBall"/>
-        <com.bbaek.lottogo.widget.NumberBall
+        <com.b2soft.lottogo.widget.NumberBall
             android:id="@+id/ball21"
             style="@style/GoBall"/>
-        <com.bbaek.lottogo.widget.NumberBall
+        <com.b2soft.lottogo.widget.NumberBall
             android:id="@+id/ball22"
             style="@style/GoBall"/>
-        <com.bbaek.lottogo.widget.NumberBall
+        <com.b2soft.lottogo.widget.NumberBall
             android:id="@+id/ball23"
             style="@style/GoBall"/>
-        <com.bbaek.lottogo.widget.NumberBall
+        <com.b2soft.lottogo.widget.NumberBall
             android:id="@+id/ball24"
             style="@style/GoBall"/>
-        <com.bbaek.lottogo.widget.NumberBall
+        <com.b2soft.lottogo.widget.NumberBall
             android:id="@+id/ball25"
             style="@style/GoBall"/>
     </GridLayout>

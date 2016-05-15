@@ -70,7 +70,7 @@
                         android:textStyle="bold"
                         android:text="바둑판을 눌러주세요"/>
 
-                    <com.bbaek.lottogo.widget.NumberBallMetrix
+                    <com.b2soft.lottogo.widget.NumberBallMetrix
                         android:id="@+id/ballNumberMetrix"
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"

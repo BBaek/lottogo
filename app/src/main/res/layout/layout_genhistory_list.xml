@@ -11,21 +11,21 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <com.bbaek.lottogo.widget.NumberBall
+        <com.b2soft.lottogo.widget.NumberBall
             android:id="@+id/drwtNo1HisList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:ballSize="small"
             android:layout_marginRight="5dp"/>
 
-        <com.bbaek.lottogo.widget.NumberBall
+        <com.b2soft.lottogo.widget.NumberBall
             android:id="@+id/drwtNo2HisList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:ballSize="small"
             android:layout_marginRight="5dp"/>
 
-        <com.bbaek.lottogo.widget.NumberBall
+        <com.b2soft.lottogo.widget.NumberBall
             android:id="@+id/drwtNo3HisList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -37,21 +37,21 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <com.bbaek.lottogo.widget.NumberBall
+        <com.b2soft.lottogo.widget.NumberBall
             android:id="@+id/drwtNo4HisList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:ballSize="small"
             android:layout_marginRight="5dp"/>
 
-        <com.bbaek.lottogo.widget.NumberBall
+        <com.b2soft.lottogo.widget.NumberBall
             android:id="@+id/drwtNo5HisList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:ballSize="small"
             android:layout_marginRight="5dp"/>
 
-        <com.bbaek.lottogo.widget.NumberBall
+        <com.b2soft.lottogo.widget.NumberBall
             android:id="@+id/drwtNo6HisList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

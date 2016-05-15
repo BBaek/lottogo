@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-        <com.bbaek.lottogo.widget.NumberBall
+        <com.b2soft.lottogo.widget.NumberBall
             android:id="@+id/gridBall"
             app:ballSize="large"
             android:layout_width="wrap_content"

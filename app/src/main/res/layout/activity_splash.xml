@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#3f4672"
-    tools:context="com.bbaek.lottogo.activity.splash.Splash">
+    tools:context="com.b2soft.lottogo.activity.splash.Splash">
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

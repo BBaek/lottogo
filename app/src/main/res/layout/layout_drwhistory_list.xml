@@ -43,37 +43,37 @@
         android:gravity="center_horizontal"
         android:orientation="horizontal">
 
-        <com.bbaek.lottogo.widget.NumberBall
+        <com.b2soft.lottogo.widget.NumberBall
             android:id="@+id/drwtNo1List"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp" />
 
-        <com.bbaek.lottogo.widget.NumberBall
+        <com.b2soft.lottogo.widget.NumberBall
             android:id="@+id/drwtNo2List"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp" />
 
-        <com.bbaek.lottogo.widget.NumberBall
+        <com.b2soft.lottogo.widget.NumberBall
             android:id="@+id/drwtNo3List"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp" />
 
-        <com.bbaek.lottogo.widget.NumberBall
+        <com.b2soft.lottogo.widget.NumberBall
             android:id="@+id/drwtNo4List"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp" />
 
-        <com.bbaek.lottogo.widget.NumberBall
+        <com.b2soft.lottogo.widget.NumberBall
             android:id="@+id/drwtNo5List"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp" />
 
-        <com.bbaek.lottogo.widget.NumberBall
+        <com.b2soft.lottogo.widget.NumberBall
             android:id="@+id/drwtNo6List"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -86,7 +86,7 @@
             android:layout_marginRight="5dp"
             android:text="+" />
 
-        <com.bbaek.lottogo.widget.NumberBall
+        <com.b2soft.lottogo.widget.NumberBall
             android:id="@+id/drwtBunsNoList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
