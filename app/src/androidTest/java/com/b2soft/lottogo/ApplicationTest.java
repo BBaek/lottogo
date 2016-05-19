@@ -1,4 +1,4 @@
-package com.bbaek.lottogo;
+package com.b2soft.lottogo;
 
 import android.app.Application;
 import android.support.test.runner.AndroidJUnit4;
@@ -6,8 +6,8 @@ import android.test.ApplicationTestCase;
 import android.test.suitebuilder.annotation.LargeTest;
 import android.test.suitebuilder.annotation.SmallTest;
 
-import com.bbaek.lottogo.Repository.LottoRepository;
-import com.bbaek.lottogo.model.Lotto;
+import com.b2soft.lottogo.Repository.LottoRepository;
+import com.b2soft.lottogo.model.Lotto;
 
 import org.junit.Before;
 import org.junit.BeforeClass;

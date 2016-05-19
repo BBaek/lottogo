@@ -97,9 +97,11 @@ public class DrwHistoryActivity extends AppCompatActivity implements DrwHistoryP
                     if (!value.isEmpty() ) {
                         int v = Integer.parseInt(value);
                         if (v >= historyListView.getAdapter().getCount()) {
+                            pos = 0;
+                        } else if (v <= 0) {
                             pos = historyListView.getAdapter().getCount() - 1;
                         } else {
-                            pos = v - 1;
+                            pos = historyListView.getAdapter().getCount() - v;
                         }
                     }
                     historyListView.setSelection(pos);

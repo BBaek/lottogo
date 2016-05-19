@@ -12,6 +12,7 @@ import io.realm.Realm;
 import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.RealmResults;
+import io.realm.Sort;
 
 /**
  * Created by woonsungbaek on 2016. 4. 4..
@@ -143,9 +144,16 @@ public class LottoRepository {
     }
 
     public RealmResults selectAll() {
-        Realm realm = Realm.getDefaultInstance();
-        RealmResults results = realm.where(Lotto.class).findAll();
+        return selectAll(null, null);
+    }
 
+    public RealmResults selectAll(String field, Sort sort) {
+        Realm realm = Realm.getDefaultInstance();
+        RealmResults results;
+        results = realm.where(Lotto.class).findAll();
+        if (field != null || !field.isEmpty()) {
+            results.sort(field, sort);
+        }
         return results;
     }
 

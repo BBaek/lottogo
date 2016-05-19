@@ -8,6 +8,8 @@ import com.b2soft.lottogo.utils.BBLogger;
 
 import java.util.List;
 
+import io.realm.Sort;
+
 /**
  * Created by woonsungbaek on 2016. 5. 9..
  */
@@ -23,6 +25,6 @@ public class DrwHistoryModel {
     }
 
     public List<Lotto> getAllDrwLottoList() {
-        return lottoRepository.selectAll();
+        return lottoRepository.selectAll("drwNo", Sort.DESCENDING);
     }
 }
