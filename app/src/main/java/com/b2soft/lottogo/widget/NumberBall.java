@@ -92,7 +92,7 @@ public class NumberBall extends LinearLayout {
     public void setDistricted(boolean districted) {
         this.districted = districted;
         if (districted) {
-            background.setImageDrawable(context.getDrawable(R.drawable.ic_district_line));
+            background.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_district_line));
         } else {
             background.setImageDrawable(null);
         }
