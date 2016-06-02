@@ -10,10 +10,33 @@ public class NewHistoryNo extends RealmObject {
     // history number
 
     @PrimaryKey
-    private int no;
+    private int id;
 
-    private int seq;
+    private DrwtNos nos;
 
-    private String date;
+    private String genDate;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public DrwtNos getNos() {
+        return nos;
+    }
+
+    public void setNos(DrwtNos nos) {
+        this.nos = nos;
+    }
+
+    public String getGenDate() {
+        return genDate;
+    }
+
+    public void setGenDate(String genDate) {
+        this.genDate = genDate;
+    }
 }

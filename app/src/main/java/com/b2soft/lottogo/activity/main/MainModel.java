@@ -3,17 +3,21 @@ package com.b2soft.lottogo.activity.main;
 import android.content.Context;
 
 import com.b2soft.lottogo.LottoUtils;
+import com.b2soft.lottogo.Repository.NewHistoryRepository;
 import com.b2soft.lottogo.Repository.InExcludeRepository;
 import com.b2soft.lottogo.Repository.LottoRepository;
+import com.b2soft.lottogo.Repository.TransactionCallback;
 import com.b2soft.lottogo.activity.MyApplication;
 import com.b2soft.lottogo.adapter.GenHistoryListAdapter;
+import com.b2soft.lottogo.model.my.DrwtNos;
 import com.b2soft.lottogo.model.my.InExcludeNo;
+import com.b2soft.lottogo.model.my.NewHistoryNo;
 import com.b2soft.lottogo.utils.BBLogger;
 import com.b2soft.lottogo.widget.NumberBallMetrix;
+import com.bbaek.common.utils.DateUtils;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
-import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,12 +37,14 @@ public class MainModel {
     private LottoUtils lottoUtils;
     GenHistoryListAdapter genHistoryAdapter;
     InExcludeRepository inExcludeRepository;
+    NewHistoryRepository newHistoryRepository;
 
     public MainModel(Context context) {
         this.context = context;
         lottoUtils = new LottoUtils(context);
         genHistoryAdapter = new GenHistoryListAdapter(context, new ArrayList<Map<Integer, Integer>>());
         inExcludeRepository = new InExcludeRepository();
+        newHistoryRepository = new NewHistoryRepository();
     }
 
     public Map<Integer, Integer> getRandBalls() {
@@ -96,6 +102,27 @@ public class MainModel {
     public void saveHistory(Map<Integer, Integer> balls) {
         genHistoryAdapter.addItem(balls);
         genHistoryAdapter.notifyDataSetChanged();
+        saveHistoryDB(balls);
+    }
+
+    public void saveHistoryDB(Map<Integer, Integer> balls) {
+        NewHistoryNo data = new NewHistoryNo();
+        List<Integer> list = lottoUtils.sortByValue(balls);
+        DrwtNos nos = new DrwtNos();
+        nos.setDrwtNo1(list.get(0));
+        nos.setDrwtNo2(list.get(1));
+        nos.setDrwtNo3(list.get(2));
+        nos.setDrwtNo4(list.get(3));
+        nos.setDrwtNo5(list.get(4));
+        nos.setDrwtNo6(list.get(5));
+        data.setNos(nos);
+        data.setGenDate(DateUtils.getNowDate("yyyy-MM-dd"));
+        newHistoryRepository.save(data, new TransactionCallback.OnInsertCallback() {
+            @Override
+            public void onSuccess() {
+                logger.debug("successed new history balls from DB!");
+            }
+        });
     }
 
     public void removeHistory(int pos) {
