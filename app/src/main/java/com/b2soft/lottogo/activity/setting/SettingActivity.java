@@ -59,8 +59,6 @@ public class SettingActivity extends AppCompatActivity implements SettingPresent
         settingListView.setAdapter(new SettingListAdapter(context));
 
         // AD
-//        AdRequest adRequest = new AdRequest.Builder().build();
-//        adView.loadAd(adRequest);
         adView.loadAd(MyApplication.adRequest);
     }
 
