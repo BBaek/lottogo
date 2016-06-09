@@ -10,6 +10,10 @@
 
     <color name="backgroundColor">#E8E8E0</color>
     <color name="backgroundColorPress">#DBDBD3</color>
+    <color name="red">#FF3B00</color>
+    <color name="red_press">#990000</color>
+    <color name="yellow">#f4db67</color>
+    <color name="yellow_press">#8e7c29</color>
 
     <color name="colorGoBackground">#DEA344</color>
     <color name="colorGoLine">#65310D</color>

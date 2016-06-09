@@ -4,12 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".activity.setting.history.NewHistoryActivity"
     tools:showIn="@layout/activity_new_history">
 
+    <ListView
+        android:id="@+id/newHistoryList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/newHistoryClsBtn"/>
+
+    <Button
+        android:id="@+id/newHistoryClsBtn"
+        android:layout_above="@+id/layout_ad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorGoBackground"
+        android:text="전체 삭제(마크 제외)" />
+
+    <include
+        android:id="@+id/layout_ad"
+        layout="@layout/layout_ad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
 </RelativeLayout>

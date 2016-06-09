@@ -12,6 +12,8 @@ public class NewHistoryNo extends RealmObject {
     @PrimaryKey
     private int id;
 
+    private boolean bookmark;
+
     private DrwtNos nos;
 
     private String genDate;
@@ -22,6 +24,14 @@ public class NewHistoryNo extends RealmObject {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public boolean isBookmark() {
+        return bookmark;
+    }
+
+    public void setBookmark(boolean bookmark) {
+        this.bookmark = bookmark;
     }
 
     public DrwtNos getNos() {

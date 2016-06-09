@@ -40,8 +40,8 @@ public class SettingPresenterImpl implements SettingPresenter {
                 ActivityModel.changeStartActivity(activity, ExcludeNoActivity.class, false, null);
                 break;
             case 3:
-                Toast.makeText(activity.getApplicationContext(), "준비중입니다.", Toast.LENGTH_SHORT).show();
-//                ActivityModel.changeStartActivity(activity, NewHistoryActivity.class, false, null);
+//                Toast.makeText(activity.getApplicationContext(), "준비중입니다.", Toast.LENGTH_SHORT).show();
+                ActivityModel.changeStartActivity(activity, NewHistoryActivity.class, false, null);
                 break;
             case 4:
 //                Toast.makeText(activity.getApplicationContext(), "준비중입니다.", Toast.LENGTH_SHORT).show();

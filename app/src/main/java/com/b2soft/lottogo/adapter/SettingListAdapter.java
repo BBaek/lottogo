@@ -64,8 +64,8 @@ public class SettingListAdapter extends ArrayAdapter<String> {
         if (view == null) {
             view = Inflater.inflate(layoutId, parent, false);
             holder = new SettingListViewHoler(view);
-            holder.title = (TextView) view.findViewById(R.id.settingTitle);
-            holder.icon = (NumberBall) view.findViewById(R.id.settingIcon);
+//            holder.title = (TextView) view.findViewById(R.id.settingTitle);
+//            holder.icon = (NumberBall) view.findViewById(R.id.settingIcon);
             view.setTag(holder);
         } else {
             holder = (SettingListViewHoler) view.getTag();

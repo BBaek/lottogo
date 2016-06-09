@@ -22,6 +22,7 @@ public class NewHistoryRepository {
     public void save(NewHistoryNo data, TransactionCallback.OnInsertCallback callback) {
         Realm realm = Realm.getDefaultInstance();
         realm.beginTransaction();
+        data.setId(CommonRepository.getNextKey(NewHistoryNo.class));
         realm.copyToRealm(data);
         realm.commitTransaction();
 
@@ -29,40 +30,74 @@ public class NewHistoryRepository {
             callback.onSuccess();
     }
 
-    public ResultHistoryNo select(String key) {
+    public NewHistoryNo select(int id) {
         Realm realm = Realm.getDefaultInstance();
-        RealmObject result = realm.where(ResultHistoryNo.class).equalTo("key", key).findFirst();
-        return (ResultHistoryNo) result;
+        RealmObject result = realm.where(NewHistoryNo.class).equalTo("id", id).findFirst();
+        return (NewHistoryNo) result;
     }
 
-    public RealmResults<ResultHistoryNo> selectAll() {
+    public RealmResults<NewHistoryNo> selectAll() {
         Realm realm = Realm.getDefaultInstance();
-        RealmResults<ResultHistoryNo> results = realm.where(ResultHistoryNo.class).findAll();
+        RealmResults<NewHistoryNo> results = realm.where(NewHistoryNo.class).findAll();
         return results;
     }
 
-    public RealmResults<ResultHistoryNo> selectSortedAll(String fieldName) {
+    public RealmResults<NewHistoryNo> selectSortedAll(String fieldName) {
         return selectSortedAll(fieldName, Sort.ASCENDING);
     }
 
-    public RealmResults<ResultHistoryNo> selectSortedAll(String fieldName, Sort sort) {
-        RealmResults<ResultHistoryNo> results = selectAll();
+    public RealmResults<NewHistoryNo> selectSortedAll(String fieldName, Sort sort) {
+        RealmResults<NewHistoryNo> results = selectAll();
         results.sort(fieldName, sort);
         return results;
     }
 
-    public boolean isExistedResult(String key) {
+    public RealmResults<NewHistoryNo> selectAllMarked(boolean isMarked) {
         Realm realm = Realm.getDefaultInstance();
-        if (realm.where(ResultHistoryNo.class).equalTo("key", key).findAll().size() > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        RealmResults<NewHistoryNo> results = realm.where(NewHistoryNo.class).equalTo("bookmark", isMarked).findAll();
+        results.sort("id", Sort.DESCENDING);
+        return results;
     }
 
-    public boolean delete(String key) {
+    public boolean updateBookmark(int id, boolean isMark) {
         Realm realm = Realm.getDefaultInstance();
-        RealmResults<ResultHistoryNo> results = realm.where(ResultHistoryNo.class).equalTo("key", key).findAll();
+        NewHistoryNo no = select(id);
+        if (no != null) {
+            realm.beginTransaction();
+            no.setBookmark(isMark);
+            realm.commitTransaction();
+            return true;
+        }
+        return false;
+    }
+
+    public boolean delete(int id) {
+        Realm realm = Realm.getDefaultInstance();
+        RealmResults<NewHistoryNo> results = realm.where(NewHistoryNo.class).equalTo("id", id).findAll();
+        if (results != null) {
+            realm.beginTransaction();
+            results.clear();
+            realm.commitTransaction();
+            return true;
+        }
+        return false;
+    }
+
+    public boolean deleteAll() {
+        Realm realm = Realm.getDefaultInstance();
+        RealmResults<NewHistoryNo> results = realm.where(NewHistoryNo.class).findAll();
+        if (results != null) {
+            realm.beginTransaction();
+            results.clear();
+            realm.commitTransaction();
+            return true;
+        }
+        return false;
+    }
+
+    public boolean deleteAllNotMarked() {
+        Realm realm = Realm.getDefaultInstance();
+        RealmResults<NewHistoryNo> results = realm.where(NewHistoryNo.class).equalTo("bookmark", false).findAll();
         if (results != null) {
             realm.beginTransaction();
             results.clear();

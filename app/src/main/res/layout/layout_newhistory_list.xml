@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.daimajia.swipe.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/swipe"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:tag="Bottom2">
+
+        <ImageView
+            android:id="@+id/star"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/yellow"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:src="@drawable/star" />
+
+        <ImageView
+            android:id="@+id/trash"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/red"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:src="@drawable/trash" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/white"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/newHistoryMarker"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/star_off"/>
+
+        <TextView
+            android:id="@+id/newHistoryListDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:text="2015-00-00" />
+
+        <com.b2soft.lottogo.widget.NumberBall
+            android:id="@+id/newHistoryDrwtNo1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp" />
+
+        <com.b2soft.lottogo.widget.NumberBall
+            android:id="@+id/newHistoryDrwtNo2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp" />
+
+        <com.b2soft.lottogo.widget.NumberBall
+            android:id="@+id/newHistoryDrwtNo3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp" />
+
+        <com.b2soft.lottogo.widget.NumberBall
+            android:id="@+id/newHistoryDrwtNo4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp" />
+
+        <com.b2soft.lottogo.widget.NumberBall
+            android:id="@+id/newHistoryDrwtNo5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp" />
+
+        <com.b2soft.lottogo.widget.NumberBall
+            android:id="@+id/newHistoryDrwtNo6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp" />
+    </LinearLayout>
+</com.daimajia.swipe.SwipeLayout>

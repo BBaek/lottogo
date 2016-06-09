@@ -116,6 +116,7 @@ public class MainModel {
         nos.setDrwtNo5(list.get(4));
         nos.setDrwtNo6(list.get(5));
         data.setNos(nos);
+        data.setBookmark(false);
         data.setGenDate(DateUtils.getNowDate("yyyy-MM-dd"));
         newHistoryRepository.save(data, new TransactionCallback.OnInsertCallback() {
             @Override
