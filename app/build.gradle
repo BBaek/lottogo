@@ -24,7 +24,7 @@ android {
     buildToolsVersion "23.0.2"
     defaultConfig {
         applicationId "com.b2soft.lottogo"
-        minSdkVersion 21
+        minSdkVersion 19
         targetSdkVersion 23
         multiDexEnabled true
 
