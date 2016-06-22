@@ -8,14 +8,11 @@ import android.support.multidex.MultiDexApplication;
 import com.b2soft.lottogo.model.Lotto;
 import com.b2soft.lottogo.model.Migration;
 import com.crashlytics.android.Crashlytics;
-import com.facebook.stetho.Stetho;
 import com.google.android.gms.ads.AdRequest;
 
 import java.util.List;
 
 import io.fabric.sdk.android.Fabric;
-import io.realm.Realm;
-import io.realm.RealmConfiguration;
 
 /**
  * Created by woonsungbaek on 2016. 3. 30..
