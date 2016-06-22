@@ -11,8 +11,6 @@ import android.widget.ListView;
 
 import com.b2soft.lottogo.R;
 import com.b2soft.lottogo.activity.MyApplication;
-import com.b2soft.lottogo.activity.setting.SettingPresenter;
-import com.b2soft.lottogo.activity.setting.SettingPresenterImpl;
 import com.b2soft.lottogo.adapter.NewHistoryListAdapter;
 import com.b2soft.lottogo.utils.BBLogger;
 import com.b2soft.lottogo.utils.ViewUtils;

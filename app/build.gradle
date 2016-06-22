@@ -24,11 +24,19 @@ android {
     buildToolsVersion "23.0.2"
     defaultConfig {
         applicationId "com.b2soft.lottogo"
+
+        versionCode 119
+        versionName "1.19"
+
         minSdkVersion 19
         targetSdkVersion 23
         multiDexEnabled true
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    dexOptions {
+        javaMaxHeapSize "4g"
+        preDexLibraries false
     }
     buildTypes {
         release {
@@ -43,6 +51,14 @@ android {
         exclude 'META-INF/LICENSE.txt'
         exclude 'META-INF/NOTICE.txt'
     }
+//    splits {
+//        abi {
+//            enable true
+//            reset()
+//            include 'armeabi-v7a', 'x86', 'x86_64' //select ABIs to build APKs for
+//            universalApk false //generate an additional APK that contains all the ABIs
+//        }
+//    }
 }
 
 repositories {
@@ -63,12 +79,11 @@ dependencies {
     compile 'com.android.support:design:23.2.1'
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.journeyapps:zxing-android-embedded:3.0.0@aar'
-    // 추가
+    // QR code camera lib
     compile 'com.google.zxing:core:3.2.0'
-    // 추가
+    // Chart lib
     compile 'com.github.PhilJay:MPAndroidChart:v2.2.4'
-    //    compile 'com.google.android.gms:play-services-appindexing:8.1.0'
-    //    compile 'com.google.android.gms:play-services:8.+'
+    // google AD
     compile 'com.google.android.gms:play-services-ads:8.4.0'
     // test
     // App dependencies
@@ -83,8 +98,11 @@ dependencies {
     compile('com.crashlytics.sdk.android:crashlytics:2.5.5@aar') {
         transitive = true;
     }
+    // multidex
+    compile 'com.android.support:multidex:1.0.0'
+    // swipe layout
     compile 'com.android.support:recyclerview-v7:23.0.0'
-    compile "com.daimajia.swipelayout:library:1.2.0@aar"
+    compile 'com.daimajia.swipelayout:library:1.2.0@aar'
     compile 'com.daimajia.easing:library:1.0.0@aar'
     compile 'com.daimajia.androidanimations:library:1.1.2@aar'
     compile 'com.nineoldandroids:library:2.4.0'
