@@ -11,6 +11,7 @@ import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.b2soft.lottogo.BuildConfig;
 import com.bbaek.common.client.lottogo.manager.LottoManager;
 import com.bbaek.common.client.lottogo.model.LottoInfo;
 import com.b2soft.lottogo.R;
@@ -63,15 +64,9 @@ public class Splash extends FragmentActivity {
     }
 
     private void getAppCurVersionCode() {
-        try {
-            PackageInfo pi = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_META_DATA);
-            PreferenceUtils.instance(mContext).putAppVersion(pi.versionName);
-            versionText.setText("" + pi.versionName);
-            logger.debug("CurrentVersion: " + pi.versionName + " [" + pi.versionCode + "]");
-        } catch (PackageManager.NameNotFoundException e) {
-            logger.error("Failed get package info", e);
-            killApp();
-        }
+        PreferenceUtils.instance(mContext).putAppVersion(BuildConfig.VERSION_NAME);
+        versionText.setText(BuildConfig.VERSION_NAME);
+        logger.debug("CurrentVersion: " + BuildConfig.VERSION_NAME + " [" + BuildConfig.VERSION_CODE + "]");
     }
 
     private void killApp() {
@@ -81,10 +76,10 @@ public class Splash extends FragmentActivity {
     }
 
     private void initLottoData() {
-//        for (String str : fileList()) {
-//            logger.debug("delete file: " + str);
-//            deleteFile(str);
-//        }
+        for (String str : fileList()) {
+            logger.debug("file: " + str + "(" + getFileStreamPath(str));
+//            deleteFile(str); // test code
+        }
         commonRepository.select(Lotto.class, new TransactionCallback.OnSelectAllCallback() {
             @Override
             public void onSuccess(RealmResults results) {
@@ -92,17 +87,17 @@ public class Splash extends FragmentActivity {
                 if (results != null && results.size() > 0) {
                     maxDrwNo = results.where().max("drwNo").intValue();
                 }
-                logger.debug("maxDrwNo: " + maxDrwNo);
+                logger.debug("now db maxDrwNo value: " + maxDrwNo);
 
                 if (maxDrwNo <= 0) {
-                    // file (2016.3.23 : 694)
-                    insertDBFromJson();
+                    // reaml file (2016.6.22 : 707)
+//                    insertDBFromJson();
                     maxDrwNo = results.size();
-                    logger.debug("init data > JsonFile [" + maxDrwNo + "]");
+                    logger.debug("init data from realmDB [" + maxDrwNo + "]");
                 }
 
                 // network
-                logger.debug("init data > network");
+                logger.debug("init data from network");
                 new SelectDrwNoHttpTask().execute(maxDrwNo + 1);
             }
         });
