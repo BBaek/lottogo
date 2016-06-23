@@ -48,14 +48,14 @@ public class NewHistoryRepository {
 
     public RealmResults<NewHistoryNo> selectSortedAll(String fieldName, Sort sort) {
         RealmResults<NewHistoryNo> results = selectAll();
-        results.sort(fieldName, sort);
+        results = results.sort(fieldName, sort);
         return results;
     }
 
     public RealmResults<NewHistoryNo> selectAllMarked(boolean isMarked) {
         Realm realm = Realm.getDefaultInstance();
         RealmResults<NewHistoryNo> results = realm.where(NewHistoryNo.class).equalTo("bookmark", isMarked).findAll();
-        results.sort("id", Sort.DESCENDING);
+        results = results.sort("id", Sort.DESCENDING);
         return results;
     }
 
@@ -76,7 +76,7 @@ public class NewHistoryRepository {
         RealmResults<NewHistoryNo> results = realm.where(NewHistoryNo.class).equalTo("id", id).findAll();
         if (results != null) {
             realm.beginTransaction();
-            results.clear();
+            results.deleteAllFromRealm();
             realm.commitTransaction();
             return true;
         }
@@ -88,7 +88,7 @@ public class NewHistoryRepository {
         RealmResults<NewHistoryNo> results = realm.where(NewHistoryNo.class).findAll();
         if (results != null) {
             realm.beginTransaction();
-            results.clear();
+            results.deleteAllFromRealm();
             realm.commitTransaction();
             return true;
         }
@@ -100,7 +100,7 @@ public class NewHistoryRepository {
         RealmResults<NewHistoryNo> results = realm.where(NewHistoryNo.class).equalTo("bookmark", false).findAll();
         if (results != null) {
             realm.beginTransaction();
-            results.clear();
+            results.deleteAllFromRealm();
             realm.commitTransaction();
             return true;
         }

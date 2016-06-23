@@ -77,7 +77,7 @@ public class ResultHistoryRepository {
 
     public RealmResults<ResultHistoryNo> selectSortedAll(String fieldName, Sort sort) {
         RealmResults<ResultHistoryNo> results = selectAll();
-        results.sort(fieldName, sort);
+        results = results.sort(fieldName, sort);
         return results;
     }
 
@@ -95,7 +95,7 @@ public class ResultHistoryRepository {
         RealmResults<ResultHistoryNo> results = realm.where(ResultHistoryNo.class).equalTo("key", key).findAll();
         if (results != null) {
             realm.beginTransaction();
-            results.clear();
+            results.deleteAllFromRealm();
             realm.commitTransaction();
             return true;
         }

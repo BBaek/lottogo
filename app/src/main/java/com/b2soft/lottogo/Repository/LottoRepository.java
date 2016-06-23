@@ -152,7 +152,7 @@ public class LottoRepository {
         RealmResults results;
         results = realm.where(Lotto.class).findAll();
         if (field != null || !field.isEmpty()) {
-            results.sort(field, sort);
+            results = results.sort(field, sort);
         }
         return results;
     }

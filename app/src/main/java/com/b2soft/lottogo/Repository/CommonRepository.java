@@ -157,7 +157,7 @@ public class CommonRepository {
         RealmResults results = realm.where(clazz).findAll();
         if (results != null) {
             realm.beginTransaction();
-            results.clear();
+            results.deleteAllFromRealm();
             realm.commitTransaction();
         }
 

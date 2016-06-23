@@ -70,7 +70,7 @@ public class IncludeNoActivity extends AppCompatActivity implements IncludePrese
     void onClick(View view) {
         ViewUtils.antiOverlapClick(view, 1000);
         switch (view.getId()) {
-            case R.id.excludeSelectedClsBtn:
+            case R.id.includeSelectedClsBtn:
                 includePresenter.clearAllSelected((IncludeGridAdapter) ballGridView.getAdapter());
                 break;
         }
