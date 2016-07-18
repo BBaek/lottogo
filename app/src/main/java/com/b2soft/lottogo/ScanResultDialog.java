@@ -64,30 +64,43 @@ public class ScanResultDialog extends Dialog {
 //        getWindow().setGravity(Gravity.CENTER);
         setContentView(R.layout.layout_scan_result_dialog);
         setLayout();
-        this.datas = new LottoQRParser(scanValue).getResultHistoryNo();
-        if (this.datas != null) {
-            this.lotto = getLottoNos();
-            if (this.lotto != null) {
-                setViewLottoNos();
-                getRank();
+        if(datas == null) {
+            datas = new LottoQRParser(scanValue).getResultHistoryNo();
+            if (datas != null) {
+                lotto = getLottoNos();
+                if (lotto != null) {
+                    setViewLottoNos();
+                    datas.setAnnoDate(lotto.getDrwNoDate());
+                    getRank();
 
-                resultRepository.insert(datas, new TransactionCallback.OnInsertCallback() {
-                    @Override
-                    public void onSuccess() {
-                        logger.debug("onSuccess insert scan result history");
-                        ScanResultListAdapter adapter = new ScanResultListAdapter(context, lotto, datas.getDrwtNoList());
-                        scanResultList.setAdapter(adapter);
-                    }
-                });
+                    // save result to db
+                    resultRepository.insert(datas, new TransactionCallback.OnInsertCallback() {
+                        @Override
+                        public void onSuccess() {
+                            showResult();
+                        }
+                    });
+                } else {
+                    Toast.makeText(context, "아직 추첨이 되지 않았습니다.", Toast.LENGTH_SHORT).show();
+                    dismiss();
+                }
             } else {
-                Toast.makeText(context, "아직 추첨이 되지 않았습니다.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "바코드를 확인해 주세요.", Toast.LENGTH_SHORT).show();
                 dismiss();
             }
         } else {
-            Toast.makeText(context, "바코드를 확인해 주세요.", Toast.LENGTH_SHORT).show();
-            dismiss();
+            lotto = getLottoNos();
+            setViewLottoNos();
+            showResult();
         }
     }
+
+    protected void showResult() {
+        logger.debug("onSuccess insert scan result history");
+        ScanResultListAdapter adapter = new ScanResultListAdapter(context, lotto, datas.getDrwtNoList());
+        scanResultList.setAdapter(adapter);
+    }
+
     Lotto getLottoNos() {
         RealmObject result = lottoRepository.selectLotto(datas.getDrwNo());
         if (result != null) {
@@ -107,7 +120,7 @@ public class ScanResultDialog extends Dialog {
         drwtNo5.setValue(lotto.getDrwtNo5());
         drwtNo6.setValue(lotto.getDrwtNo6());
         drwtBunsNo.setValue(lotto.getBnusNo());
-        datas.setAnnoDate(lotto.getDrwNoDate());
+//        datas.setAnnoDate(lotto.getDrwNoDate());
     }
 
     void getRank() {
@@ -122,6 +135,13 @@ public class ScanResultDialog extends Dialog {
         this.context = context;
         this.onClickListener = onClickListener;
         this.scanValue = scanValue;
+    }
+
+    public ScanResultDialog(Context context, ResultHistoryNo datas, View.OnClickListener onClickListener) {
+        super(context, android.R.style.Theme_Translucent_NoTitleBar);
+        this.context = context;
+        this.onClickListener = onClickListener;
+        this.datas = datas;
     }
 
     void setLayout() {

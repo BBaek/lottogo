@@ -125,7 +125,7 @@ public class MainNewActivity extends Activity implements MainPresenter.View {
 //                        "010211132844" + // 5th
 //                        "1673179286";
 //                String msg = "http://qr.nlotto.co.kr/?v=" +
-//                        "0700m" +
+//                        "0701m" +
 //                        "082532353845q" +
 //                        "121722354144q" +
 //                        "091724253342q" +

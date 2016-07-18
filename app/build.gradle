@@ -25,8 +25,8 @@ android {
     defaultConfig {
         applicationId "com.b2soft.lottogo"
 
-        versionCode 121
-        versionName "1.21"
+        versionCode 122
+        versionName "1.22"
 
         minSdkVersion 19
         targetSdkVersion 23
