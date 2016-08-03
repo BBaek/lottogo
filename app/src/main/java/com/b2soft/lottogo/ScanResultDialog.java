@@ -19,6 +19,9 @@ import com.b2soft.lottogo.model.my.DrwtNos;
 import com.b2soft.lottogo.model.my.ResultHistoryNo;
 import com.b2soft.lottogo.utils.BBLogger;
 import com.b2soft.lottogo.widget.NumberBall;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 
 import io.realm.RealmObject;
 
@@ -53,6 +56,9 @@ public class ScanResultDialog extends Dialog {
     ResultHistoryRepository resultRepository = new ResultHistoryRepository();
     CommonRepository lottoRepository = new CommonRepository();
 
+    //ad
+    InterstitialAd interstitialAd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +69,29 @@ public class ScanResultDialog extends Dialog {
         // 안먹힘
 //        getWindow().setGravity(Gravity.CENTER);
         setContentView(R.layout.layout_scan_result_dialog);
+
+        //ad
+        interstitialAd = new InterstitialAd(context);
+        interstitialAd.setAdUnitId(context.getResources().getString(R.string.front_ad_unit_id));
+        AdRequest adRequest = new AdRequest.Builder().build();
+        interstitialAd.loadAd(adRequest);
+        interstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                if (interstitialAd.isLoaded()) {
+                    interstitialAd.show();
+                }
+            }
+
+            @Override
+            public void onAdOpened() {
+            }
+
+            @Override
+            public void onAdFailedToLoad(int errorCode) {
+            }
+        });
+
         setLayout();
         if(datas == null) {
             datas = new LottoQRParser(scanValue).getResultHistoryNo();
