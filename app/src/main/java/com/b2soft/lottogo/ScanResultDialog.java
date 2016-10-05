@@ -19,6 +19,9 @@ import com.b2soft.lottogo.model.my.DrwtNos;
 import com.b2soft.lottogo.model.my.ResultHistoryNo;
 import com.b2soft.lottogo.utils.BBLogger;
 import com.b2soft.lottogo.widget.NumberBall;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 
 import io.realm.RealmObject;
 
@@ -53,6 +56,9 @@ public class ScanResultDialog extends Dialog {
     ResultHistoryRepository resultRepository = new ResultHistoryRepository();
     CommonRepository lottoRepository = new CommonRepository();
 
+    //ad
+    InterstitialAd interstitialAd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,31 +69,67 @@ public class ScanResultDialog extends Dialog {
         // 안먹힘
 //        getWindow().setGravity(Gravity.CENTER);
         setContentView(R.layout.layout_scan_result_dialog);
-        setLayout();
-        this.datas = new LottoQRParser(scanValue).getResultHistoryNo();
-        if (this.datas != null) {
-            this.lotto = getLottoNos();
-            if (this.lotto != null) {
-                setViewLottoNos();
-                getRank();
 
-                resultRepository.insert(datas, new TransactionCallback.OnInsertCallback() {
-                    @Override
-                    public void onSuccess() {
-                        logger.debug("onSuccess insert scan result history");
-                        ScanResultListAdapter adapter = new ScanResultListAdapter(context, lotto, datas.getDrwtNoList());
-                        scanResultList.setAdapter(adapter);
-                    }
-                });
+        //ad
+        interstitialAd = new InterstitialAd(context);
+        interstitialAd.setAdUnitId(context.getResources().getString(R.string.front_ad_unit_id));
+        AdRequest adRequest = new AdRequest.Builder().build();
+        interstitialAd.loadAd(adRequest);
+        interstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                if (interstitialAd.isLoaded()) {
+                    interstitialAd.show();
+                }
+            }
+
+            @Override
+            public void onAdOpened() {
+            }
+
+            @Override
+            public void onAdFailedToLoad(int errorCode) {
+            }
+        });
+
+        setLayout();
+        if(datas == null) {
+            datas = new LottoQRParser(scanValue).getResultHistoryNo();
+            if (datas != null) {
+                lotto = getLottoNos();
+                if (lotto != null) {
+                    setViewLottoNos();
+                    datas.setAnnoDate(lotto.getDrwNoDate());
+                    getRank();
+
+                    // save result to db
+                    resultRepository.insert(datas, new TransactionCallback.OnInsertCallback() {
+                        @Override
+                        public void onSuccess() {
+                            showResult();
+                        }
+                    });
+                } else {
+                    Toast.makeText(context, "아직 추첨이 되지 않았습니다.", Toast.LENGTH_SHORT).show();
+                    dismiss();
+                }
             } else {
-                Toast.makeText(context, "아직 추첨이 되지 않았습니다.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "바코드를 확인해 주세요.", Toast.LENGTH_SHORT).show();
                 dismiss();
             }
         } else {
-            Toast.makeText(context, "바코드를 확인해 주세요.", Toast.LENGTH_SHORT).show();
-            dismiss();
+            lotto = getLottoNos();
+            setViewLottoNos();
+            showResult();
         }
     }
+
+    protected void showResult() {
+        logger.debug("onSuccess insert scan result history");
+        ScanResultListAdapter adapter = new ScanResultListAdapter(context, lotto, datas.getDrwtNoList());
+        scanResultList.setAdapter(adapter);
+    }
+
     Lotto getLottoNos() {
         RealmObject result = lottoRepository.selectLotto(datas.getDrwNo());
         if (result != null) {
@@ -107,7 +149,7 @@ public class ScanResultDialog extends Dialog {
         drwtNo5.setValue(lotto.getDrwtNo5());
         drwtNo6.setValue(lotto.getDrwtNo6());
         drwtBunsNo.setValue(lotto.getBnusNo());
-        datas.setAnnoDate(lotto.getDrwNoDate());
+//        datas.setAnnoDate(lotto.getDrwNoDate());
     }
 
     void getRank() {
@@ -122,6 +164,13 @@ public class ScanResultDialog extends Dialog {
         this.context = context;
         this.onClickListener = onClickListener;
         this.scanValue = scanValue;
+    }
+
+    public ScanResultDialog(Context context, ResultHistoryNo datas, View.OnClickListener onClickListener) {
+        super(context, android.R.style.Theme_Translucent_NoTitleBar);
+        this.context = context;
+        this.onClickListener = onClickListener;
+        this.datas = datas;
     }
 
     void setLayout() {

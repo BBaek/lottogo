@@ -9,8 +9,10 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.b2soft.lottogo.R;
+import com.b2soft.lottogo.ScanResultDialog;
 import com.b2soft.lottogo.activity.MyApplication;
 import com.b2soft.lottogo.adapter.ResultHistoryGridAdapter;
+import com.b2soft.lottogo.model.my.ResultHistoryNo;
 import com.b2soft.lottogo.utils.BBLogger;
 import com.b2soft.lottogo.utils.ViewUtils;
 import com.daimajia.swipe.util.Attributes;
@@ -25,6 +27,8 @@ public class ResultHistoryActivity extends AppCompatActivity {
 
     @Bind(R.id.resultHistoryGridView) GridView gridView;
     @Bind(R.id.adView) AdView adView;
+
+    ScanResultDialog rankDialog;
 
     ResultHistoryGridAdapter adapter;
 
@@ -63,7 +67,18 @@ public class ResultHistoryActivity extends AppCompatActivity {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                logger.debug("onItemClick: " + position);
+                String key = ((ResultHistoryNo) adapter.getItem(position)).getKey();
+                logger.debug("onItemClick] position:" + position + " / key: " + key);
+                rankDialog = new ScanResultDialog(context, (ResultHistoryNo) adapter.getItem(position), new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ViewUtils.antiOverlapClick(v, 1000);
+                        if (rankDialog.isShowing()) {
+                            rankDialog.dismiss();
+                        }
+                    }
+                });
+                rankDialog.show();
             }
         });
 

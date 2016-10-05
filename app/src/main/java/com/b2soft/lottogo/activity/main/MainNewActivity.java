@@ -113,7 +113,9 @@ public class MainNewActivity extends Activity implements MainPresenter.View {
                 mainPresenter.openActivitySetting();
                 break;
             case R.id.btnScan:
+                // open scanner
                 mainPresenter.scanQRcode();
+
                 /* testcode */
                 // 11.23.28.29.30.44 = 13
 //                String msg = "http://qr.nlotto.co.kr/?v=" +
@@ -125,7 +127,7 @@ public class MainNewActivity extends Activity implements MainPresenter.View {
 //                        "010211132844" + // 5th
 //                        "1673179286";
 //                String msg = "http://qr.nlotto.co.kr/?v=" +
-//                        "0700m" +
+//                        "0701m" +
 //                        "082532353845q" +
 //                        "121722354144q" +
 //                        "091724253342q" +
