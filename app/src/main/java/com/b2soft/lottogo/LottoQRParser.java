@@ -39,13 +39,10 @@ public class LottoQRParser {
                 for (int i = 0; i <= mc.groupCount(); i++) {
                     logger.debug("group[" + i + "]\t: " + mc.group(i));
                 }
-            } else {
-                logger.debug("not found");
-            }
 
-            String[] temp = mc.group(9).split("=");
-            logger.debug("key: " + temp[1]);
-            resultHistoryNo.setKey(temp[1]);
+                String[] temp = mc.group(9).split("=");
+                logger.debug("key: " + temp[1]);
+                resultHistoryNo.setKey(temp[1]);
 
             /*
                 m : menual
@@ -60,24 +57,27 @@ public class LottoQRParser {
               */
 
 //            StringTokenizer st = new StringTokenizer(temp[1], "m|q");
-            String value[] = temp[1].split("m|q");
-            int drwtNo = Integer.parseInt(value[0]);
-            logger.debug("drwtNo: " + drwtNo);
-            resultHistoryNo.setDrwNo(drwtNo);
+                String value[] = temp[1].split("m|q");
+                int drwtNo = Integer.parseInt(value[0]);
+                logger.debug("drwtNo: " + drwtNo);
+                resultHistoryNo.setDrwNo(drwtNo);
 
-            resultHistoryNo.setDrwtNoList(new RealmList<DrwtNos>());
-            for (int i = 1; i < value.length; i++) {
-                String number = value[i].substring(0, 12);
-                logger.debug("numbers: " + number);
-                DrwtNos drwtNos = new DrwtNos();
-                int k = 0;
-                drwtNos.setDrwtNo1(Integer.parseInt(number.substring(k, k = k + 2)));
-                drwtNos.setDrwtNo2(Integer.parseInt(number.substring(k, k = k + 2)));
-                drwtNos.setDrwtNo3(Integer.parseInt(number.substring(k, k = k + 2)));
-                drwtNos.setDrwtNo4(Integer.parseInt(number.substring(k, k = k + 2)));
-                drwtNos.setDrwtNo5(Integer.parseInt(number.substring(k, k = k + 2)));
-                drwtNos.setDrwtNo6(Integer.parseInt(number.substring(k, k = k + 2)));
-                resultHistoryNo.getDrwtNoList().add(drwtNos);
+                resultHistoryNo.setDrwtNoList(new RealmList<DrwtNos>());
+                for (int i = 1; i < value.length; i++) {
+                    String number = value[i].substring(0, 12);
+                    logger.debug("numbers: " + number);
+                    DrwtNos drwtNos = new DrwtNos();
+                    int k = 0;
+                    drwtNos.setDrwtNo1(Integer.parseInt(number.substring(k, k = k + 2)));
+                    drwtNos.setDrwtNo2(Integer.parseInt(number.substring(k, k = k + 2)));
+                    drwtNos.setDrwtNo3(Integer.parseInt(number.substring(k, k = k + 2)));
+                    drwtNos.setDrwtNo4(Integer.parseInt(number.substring(k, k = k + 2)));
+                    drwtNos.setDrwtNo5(Integer.parseInt(number.substring(k, k = k + 2)));
+                    drwtNos.setDrwtNo6(Integer.parseInt(number.substring(k, k = k + 2)));
+                    resultHistoryNo.getDrwtNoList().add(drwtNos);
+                }
+            } else {
+                logger.debug("not found");
             }
         } else {
             resultHistoryNo = null;
